@@ -1,0 +1,11 @@
+{
+    "name": "LED Effect Engine",
+    "keywords": "arduino, leds, effects",
+    "description": "A Library to control effects on digital leds/lamps(ws2812, ...) with es4a effects",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ES4A/LED-Effect-Engine"
+    },
+    "frameworks": "arduino",
+    "platforms": "*"
+  }
