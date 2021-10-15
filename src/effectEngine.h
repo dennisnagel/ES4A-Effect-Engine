@@ -26,7 +26,7 @@
 		private:
 			JSONVar effectData;
 			int effectBrightness = 100;
-			int leds = 60;
+			int ledCount = 60;
             int effectLedSize = 1;
             int effectDelay = 50;
             bool effect = false;
