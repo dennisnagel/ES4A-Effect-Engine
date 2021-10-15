@@ -164,9 +164,9 @@ void EffectEngine::tick(){
         }*/
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = 0;
-            greenarray[i] = 0;
-            bluearray[i] = 0;
+            redarray[i] = (unit8_t)0;
+            greenarray[i] = (unit8_t)0;
+            bluearray[i] = (unit8_t)0;
         }
 
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
