@@ -7,7 +7,7 @@ EffectEngine::EffectEngine(){
 }
 
 EffectEngine::EffectEngine(int leds){
-    ledCount = leds
+    ledCount = leds;
 }
 
 void EffectEngine::setData(String data){
