@@ -15,7 +15,6 @@ void EffectEngine::setData(String data){
         data.remove(0);
         effect = true;
         effectData = JSON.parse(data);
-        startTime = millis();
         for (size_t i = 0; i < effectData["la"].length; i++){
             startTime[i] = millis();
         }
