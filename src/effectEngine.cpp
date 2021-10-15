@@ -21,7 +21,9 @@ void EffectEngine::setData(String data){
         effectData = JSON.parse(data);
         if(updateFunctionRGB) updateFunctionRGB({0},{0},{0});
         uint8_t red, green, blue;
-        unti8_t redarray[ledCount], greenarray[ledCount], bluearray[ledCount];
+        unti8_t redarray[ledCount] = {};
+        unti8_t greenarray[ledCount] = {};
+        uint8_t bluearray[ledCount] = {}
         double hue, saturation, value;
 
         hue = (int)effectData["h"];
@@ -33,6 +35,11 @@ void EffectEngine::setData(String data){
         value = value / 1000;
 
         ColorConverter::HsvToRgb(hue, saturation, value, red, green, blue);
+
+        red = (red * effectBrightness) / 100;
+        green = (green * effectBrightness) / 100;
+        blue = (blue * effectBrightness) / 100;
+
         for (size_t i = 0; i < ledCount; i++){
             redarray[i] = red;
             greenarray[i] = green;
