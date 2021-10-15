@@ -139,8 +139,8 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 
 void EffectEngine::tick(){
     if(effect){
-        Serial.print("Test1");
-        JSONVar returnData = JSON.parse("[]");
+        //Serial.print("Test1");
+        //JSONVar returnData = JSON.parse("[]");
 
         /*for (size_t i = 0; i < ledCount; i++){
             returnData[i] = JSON.parse("[]");
@@ -154,17 +154,17 @@ void EffectEngine::tick(){
             returnData = mergePattern(returnData, layer);
         }*/
 
-Serial.print("Test2");
-        uint8_t reddata[ledCount] = {};
+//Serial.print("Test2");
+        /*uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
-        uint8_t bluedata[ledCount] = {};
+        uint8_t bluedata[ledCount] = {};*/
 
         /*for (size_t i = 0; i < ledCount; i++){
             redarray[i] = (int)returnData[i][0];
             greenarray[i] = (int)returnData[i][1];
             bluearray[i] = (int)returnData[i][2];
         }*/
-        uint8_t num = 10;
+        /*uint8_t num = 10;
         Serial.print("Test3");
         for (int i = 0; i < ledCount; i++){
             Serial.println(i);
@@ -176,7 +176,19 @@ Serial.print("Test2");
         Serial.print("Free Memory: ");
         Serial.println(ESP.getFreeHeap());
 
-        if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);
+        if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
+
+        uint8_t color[3] = {0, 0, 0};
+        uint8_t redarray[ledCount] = {};
+        uint8_t greenarray[ledCount] = {};
+        uint8_t bluearray[ledCount] = {};
+
+        for (size_t i = 0; i < ledCount; i++){
+            redarray[i] = color[0];
+            greenarray[i] = color[1];
+            bluearray[i] = color[2];
+        }
+        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
 }
 
