@@ -11,7 +11,7 @@ EffectEngine::EffectEngine(int leds){
 }
 
 void EffectEngine::setData(String data){
-    if(data.charAt(0) == "f"){
+    if(data.charAt(0) == 'f'){
         data.remove(0);
         effect = true;
         effectData = JSON.parse(data);
