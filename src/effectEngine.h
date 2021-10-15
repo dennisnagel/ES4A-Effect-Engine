@@ -1,5 +1,5 @@
-#ifndef effectEngine_h
-	#define effectEngine_h
+#ifndef EffectEngine_h
+	#define EffectEngine_h
 	
 	extern "C" {
 		
@@ -11,11 +11,11 @@
 		#include "WProgram.h"
 	#endif 
 	
-	class effectEngine{
+	class EffectEngine{
 		public:	
 
-			effectEngine();
-			effectEngine(int leds);
+			EffectEngine();
+			EffectEngine(int leds);
 		
             void tick();
             void setData(String data);
@@ -27,4 +27,4 @@
             bool effect = false;
 		
 	};
-#endif //effectEngine
+#endif //EffectEngine
