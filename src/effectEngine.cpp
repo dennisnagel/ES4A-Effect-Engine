@@ -13,16 +13,17 @@ EffectEngine::EffectEngine(int leds){
 void EffectEngine::setData(String data){
     if(data.charAt(0) == 'f'){
         data.remove(0);
-        Serial.println("effect");
-        //JSONVar newData = JSON.parse(data);
+        JSONVar newData = JSON.parse(data);
         //effect = true;
-        //if(JSON.stringify(newData) != JSON.stringify(effectData)){
+        if(JSON.stringify(newData) != JSON.stringify(effectData)){
+            Serial.println("effect");
+        Serial.println(data);
         //    effectData = newData;
         //    startTime[effectData["la"].length()] = {}; 
         //    for (size_t i = 0; i < effectData["la"].length(); i++){
         //        startTime[i] = millis();
         //    }
-        //}
+        }
     }
     else{
         effect = false;
