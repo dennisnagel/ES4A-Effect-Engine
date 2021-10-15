@@ -166,7 +166,8 @@ Serial.print("Test2");
         }*/
         uint8_t num = 0;
         Serial.print("Test3");
-        for (size_t i = 0; i < ledCount; i++){
+        for (int i = 0; i < ledCount; i++){
+            Serial.println(i);
             redarray[i] = num;
             greenarray[i] = num;
             bluearray[i] = num;
