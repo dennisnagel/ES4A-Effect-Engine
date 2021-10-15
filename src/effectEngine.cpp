@@ -22,7 +22,8 @@ void EffectEngine::setData(String data){
     else{
         effect = false;
         effectData = JSON.parse(data);
-        uint8_t color[3] = HsvToRgb(effectData); 
+        uint8_t color[3] = {0, 0, 0};
+        HsvToRgb(effectData, color); 
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
