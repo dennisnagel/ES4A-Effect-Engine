@@ -139,9 +139,9 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 
 void EffectEngine::tick(){
     if(effect){
-        /*JSONVar returnData = JSON.parse("[]");
+        JSONVar returnData = JSON.parse("[]");
 
-        for (size_t i = 0; i < ledCount; i++){
+        /*for (size_t i = 0; i < ledCount; i++){
             returnData[i] = JSON.parse("[]");;
             returnData[i][0] = 0;
             returnData[i][1] = 0;
