@@ -155,28 +155,28 @@ void EffectEngine::tick(){
         }*/
 
 Serial.print("Test2");
-        uint8_t redarray[ledCount] = {};
-        uint8_t greenarray[ledCount] = {};
-        uint8_t bluearray[ledCount] = {};
+        uint8_t reddata[ledCount] = {};
+        uint8_t greendata[ledCount] = {};
+        uint8_t bluedata[ledCount] = {};
 
         /*for (size_t i = 0; i < ledCount; i++){
             redarray[i] = (int)returnData[i][0];
             greenarray[i] = (int)returnData[i][1];
             bluearray[i] = (int)returnData[i][2];
         }*/
-        uint8_t num = 0;
+        uint8_t num = 10;
         Serial.print("Test3");
         for (int i = 0; i < ledCount; i++){
             Serial.println(i);
-            redarray[i] = num;
-            greenarray[i] = num;
-            bluearray[i] = num;
+            reddata[i] = num;
+            greendata[i] = num;
+            bluedata[i] = num;
         }
 
         Serial.print("Free Memory: ");
         Serial.println(ESP.getFreeHeap());
 
-        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
+        if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);
     }
 }
 
