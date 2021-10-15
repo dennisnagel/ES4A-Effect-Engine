@@ -10,6 +10,7 @@
 		#else
 		#include "WProgram.h"
 	#endif 
+	#include <Arduino_JSON.h>
 	
 	class EffectEngine{
 		public:	
