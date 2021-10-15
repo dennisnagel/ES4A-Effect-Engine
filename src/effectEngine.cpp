@@ -139,6 +139,7 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 
 void EffectEngine::tick(){
     if(effect){
+        Serial.print("Test1");
         JSONVar returnData = JSON.parse("[]");
 
         /*for (size_t i = 0; i < ledCount; i++){
@@ -153,6 +154,7 @@ void EffectEngine::tick(){
             returnData = mergePattern(returnData, layer);
         }*/
 
+Serial.print("Test2");
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
@@ -163,11 +165,15 @@ void EffectEngine::tick(){
             bluearray[i] = (int)returnData[i][2];
         }*/
         uint8_t num = 0;
+        Serial.print("Test3");
         for (size_t i = 0; i < ledCount; i++){
             redarray[i] = num;
             greenarray[i] = num;
             bluearray[i] = num;
         }
+
+        Serial.print("Free Memory: ");
+        Serial.println(ESP.getFreeHeap());
 
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
