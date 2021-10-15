@@ -64,9 +64,13 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
 }
 
 JSONVar EffectEngine::buildPattern(JSONVar data){
-    //uint8_t returnData[ledCount][3] = {};
+    JSONVar returnData = JSON.parse("[]");
 
-    returnData = JSON.parse("[]");
+    for (size_t i = 0; i < ledCount; i++){
+        ledCount[i][0] = 0;
+        ledCount[i][1] = 0;
+        ledCount[i][2] = 0;
+    }
 
     for (size_t i = 0; i < data.length(); i++){
         if(String((const char*)data[i]["ty"]) == "oc"){
@@ -75,8 +79,6 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
     }
 
     return returnData;
-
-    //return returnData;
 }
 
 void EffectEngine::tick(){
