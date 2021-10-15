@@ -22,19 +22,19 @@ void EffectEngine::setData(String data){
     else{
         effect = false;
         effectData = JSON.parse(data);
-        uint8_t color[] = HsvToRgb(effectData); 
+        uint8_t color[3] = HsvToRgb(effectData); 
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
 
-        red = (color[0] * effectBrightness) / 100;
-        green = (color[1] * effectBrightness) / 100;
-        blue = (color[2] * effectBrightness) / 100;
+        color[0] = (color[0] * effectBrightness) / 100;
+        color[1] = (color[1] * effectBrightness) / 100;
+        color[2] = (color[2] * effectBrightness) / 100;
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = red;
-            greenarray[i] = green;
-            bluearray[i] = blue;
+            redarray[i] = color[0];
+            greenarray[i] = color[1];
+            bluearray[i] = color[2];
         }
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
