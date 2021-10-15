@@ -24,7 +24,7 @@
 	
 		private:
 			String effectData;
-			int brightness = 100;
+			int effectBrightness = 100;
 			int leds = 60;
             int effectLedSize = 1;
             int effectDelay = 50;
