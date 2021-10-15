@@ -30,9 +30,6 @@
             int effectLedSize = 1;
             int effectDelay = 50;
             bool effect = false;
-			uint8_t redarray[] = {};
-        	uint8_t greenarray[] = {};
-        	uint8_t bluearray[] = {};
 			callbackFunctionRGB updateFunctionRGB;
 		
 	};
