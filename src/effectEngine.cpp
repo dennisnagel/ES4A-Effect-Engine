@@ -18,9 +18,9 @@ void EffectEngine::setBrightness(int brightness){
 }
 
 void EffectEngine::tick(){
-    
+
 }
 
-void EffectEngine::setListener(callbackFunction function){
-    updateFunction = function;
+void EffectEngine::setListenerRGB(callbackFunctionRGB function){
+    updateFunctionRGB = function;
 }
