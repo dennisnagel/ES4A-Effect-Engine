@@ -45,7 +45,7 @@ void EffectEngine::setBrightness(int brightness){
     effectBrightness = brightness;
 }
 
-uint8_t [] EffectEngine::HsvToRgb(JSONVar data){
+uint8_t* EffectEngine::HsvToRgb(JSONVar data){
     uint8_t red, green, blue;
     double hue, saturation, value;
 
@@ -61,7 +61,7 @@ uint8_t [] EffectEngine::HsvToRgb(JSONVar data){
     return {red, green, blue};
 }
 
-uint8_t [][] EffectEngine::buildPattern(JSONVar data){
+uint8_t** EffectEngine::buildPattern(JSONVar data){
     uint8_t returnData[ledCount][3] = {};
 
     for (size_t i = 0; i < data.length; i++){
