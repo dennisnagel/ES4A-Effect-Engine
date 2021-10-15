@@ -23,7 +23,7 @@
 			void setListener(callbackFunction function);
 	
 		private:
-			JSONVar effectData;
+			String effectData;
 			int brightness = 100;
 			int leds = 60;
             int effectLedSize = 1;
