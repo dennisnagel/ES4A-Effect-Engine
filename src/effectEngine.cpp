@@ -2,10 +2,10 @@
 #include "EffectEngine.h"
 #include <Arduino_JSON.h>
 
-EffectEngine::effectEngine(){
+EffectEngine::EffectEngine(){
 }
 
-EffectEngine::effectEngine(int leds){
+EffectEngine::EffectEngine(int leds){
 }
 
 void EffectEngine::setData(String data){
