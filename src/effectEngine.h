@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 	
 	extern "C" {
-		typedef void (*callbackFunction)(JSONVar);
+		typedef void (*callbackFunction)(String);
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
@@ -19,10 +19,11 @@
 		
             void tick();
             void setData(String data);
-			void setBrightness(int bri);
+			void setBrightness(int brightness);
 			void setListener(callbackFunction function);
 	
 		private:
+			JSONVar effectData;
 			int brightness = 100;
 			int leds = 60;
             int effectLedSize = 1;
