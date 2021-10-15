@@ -17,7 +17,7 @@ void EffectEngine::setData(String data){
         effect = true;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             effectData = newData;
-            startTime[] = {}; 
+            startTime[effectData["la"].length()] = {}; 
             for (size_t i = 0; i < effectData["la"].length(); i++){
                 startTime[i] = millis();
             }
@@ -37,9 +37,9 @@ void EffectEngine::setData(String data){
         color[2] = (color[2] * effectBrightness) / 100;
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = (int)color[0];
-            greenarray[i] = (int)color[1];
-            bluearray[i] = (int)color[2];
+            redarray[i] = color[0];
+            greenarray[i] = color[1];
+            bluearray[i] = color[2];
         }
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
@@ -155,9 +155,9 @@ void EffectEngine::tick(){
         uint8_t bluearray[ledCount] = {};
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = returnData[i][0];
-            greenarray[i] = returnData[i][1];
-            bluearray[i] = returnData[i][2];
+            redarray[i] = (int)returnData[i][0];
+            greenarray[i] = (int)returnData[i][1];
+            bluearray[i] = (int)returnData[i][2];
         }
 
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
