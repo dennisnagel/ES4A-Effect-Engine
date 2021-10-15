@@ -142,6 +142,7 @@ void EffectEngine::tick(){
         JSONVar returnData = JSON.parse("[]");
 
         for (size_t i = 0; i < ledCount; i++){
+            returnData[i] = JSON.parse("[]");;
             returnData[i][0] = 0;
             returnData[i][1] = 0;
             returnData[i][2] = 0;
