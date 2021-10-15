@@ -169,7 +169,7 @@ void EffectEngine::tick(){
             bluearray[i] = num;
         }
 
-        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
+        //if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
 }
 
