@@ -41,9 +41,9 @@ void EffectEngine::setData(String data){
         blue = (blue * effectBrightness) / 100;
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = red;
-            greenarray[i] = green;
-            bluearray[i] = blue;
+            redarray[i] = 255;
+            greenarray[i] = 0;
+            bluearray[i] = 0;
         }
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
