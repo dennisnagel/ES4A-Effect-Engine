@@ -67,7 +67,7 @@ void EffectEngine::buildPattern(JSONVar data){
     //uint8_t returnData[ledCount][3] = {};
 
     for (size_t i = 0; i < data.length(); i++){
-        if(data[i]["ty"] == "oc"){
+        if(String((const char*)data[i]["ty"]) == "oc"){
 
         }
     }
