@@ -162,11 +162,11 @@ void EffectEngine::tick(){
             greenarray[i] = (int)returnData[i][1];
             bluearray[i] = (int)returnData[i][2];
         }*/
-
+        uint8_t num = 0;
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = (unit8_t)0;
-            greenarray[i] = (unit8_t)0;
-            bluearray[i] = (unit8_t)0;
+            redarray[i] = num;
+            greenarray[i] = num;
+            bluearray[i] = num;
         }
 
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
