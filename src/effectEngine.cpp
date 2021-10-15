@@ -67,9 +67,9 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
     JSONVar returnData = JSON.parse("[]");
 
     for (size_t i = 0; i < ledCount; i++){
-        ledCount[i][0] = 0;
-        ledCount[i][1] = 0;
-        ledCount[i][2] = 0;
+        returnData[i][0] = 0;
+        returnData[i][1] = 0;
+        returnData[i][2] = 0;
     }
 
     for (size_t i = 0; i < data.length(); i++){
