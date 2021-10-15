@@ -23,7 +23,7 @@ void EffectEngine::setData(String data){
         uint8_t red, green, blue;
         unti8_t redarray[ledCount] = {};
         unti8_t greenarray[ledCount] = {};
-        uint8_t bluearray[ledCount] = {}
+        uint8_t bluearray[ledCount] = {};
         double hue, saturation, value;
 
         hue = (int)effectData["h"];
