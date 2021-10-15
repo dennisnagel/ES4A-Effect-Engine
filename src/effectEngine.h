@@ -25,7 +25,7 @@
 	
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
-			void buildPattern(JSONVar data);
+			JSONVar buildPattern(JSONVar data);
 			JSONVar effectData;
 			int effectBrightness = 100;
 			int ledCount = 60;
