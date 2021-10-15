@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 	
 	extern "C" {
-		typedef void (*callbackFunction)(*int);
+		typedef void (*callbackFunctionRGB)(int, int, int);
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
@@ -20,7 +20,7 @@
             void tick();
             void setData(String data);
 			void setBrightness(int brightness);
-			void setListener(callbackFunction function);
+			void setListenerRGB(callbackFunctionRGB function);
 	
 		private:
 			String effectData;
@@ -29,7 +29,7 @@
             int effectLedSize = 1;
             int effectDelay = 50;
             bool effect = false;
-			callbackFunction updateFunction;
+			callbackFunctionRGB updateFunctionRGB;
 		
 	};
 #endif //EffectEngine
