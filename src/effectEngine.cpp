@@ -14,7 +14,7 @@ void EffectEngine::setData(String data){
 }
 
 void EffectEngine::setBrightness(int brightness){
-    this.brightness = brightness;
+    effectBrightness = brightness;
 }
 
 void EffectEngine::tick(){
