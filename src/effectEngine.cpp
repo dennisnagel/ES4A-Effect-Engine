@@ -1,14 +1,14 @@
 #include <Arduino.h>
-#include "effectEngine.h"
+#include "EffectEngine.h"
 
-effectEngine::effectEngine(){
+EffectEngine::effectEngine(){
 }
 
-effectEngine::effectEngine(int leds){
+EffectEngine::effectEngine(int leds){
 }
 
-void effectEngine::setData(String data){
+void EffectEngine::setData(String data){
 }
 
-void effectEngine::tick(){
+void EffectEngine::tick(){
 }
