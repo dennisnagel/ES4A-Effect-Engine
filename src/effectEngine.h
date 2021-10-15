@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 	
 	extern "C" {
-		typedef void (*callbackFunction)(int []);
+		typedef void (*callbackFunction)(int*);
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
