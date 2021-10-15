@@ -23,7 +23,7 @@ void EffectEngine::setData(String data){
         effect = false;
         effectData = JSON.parse(data);
         uint8_t color[3] = {0, 0, 0};
-        HsvToRgb(effectData, color); 
+        HsvToRgb(effectData, color[0], color[1], color[2]); 
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
@@ -45,7 +45,7 @@ void EffectEngine::setBrightness(int brightness){
     effectBrightness = brightness;
 }
 
-void EffectEngine::HsvToRgb(JSONVar data, uint8_t &returnData[]){
+void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
     uint8_t red, green, blue;
     double hue, saturation, value;
 
@@ -58,9 +58,9 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &returnData[]){
     value = value / 1000;
 
     ColorConverter::HsvToRgb(hue, saturation, value, red, green, blue);
-    returnData[0] = red;
-    returnData[1] = green;
-    returnData[2] = blue;
+    r = red;
+    g = green;
+    b = blue;
 }
 
 void EffectEngine::buildPattern(JSONVar data, uint8_t &returnData[][]){
