@@ -15,7 +15,7 @@ void EffectEngine::setData(String data){
         data.remove(0);
         effect = true;
         effectData = JSON.parse(data);
-        for (size_t i = 0; i < effectData["la"].length; i++){
+        for (size_t i = 0; i < effectData["la"].length(); i++){
             startTime[i] = millis();
         }
     }
@@ -63,7 +63,7 @@ uint8_t* EffectEngine::HsvToRgb(JSONVar data){
 uint8_t** EffectEngine::buildPattern(JSONVar data){
     uint8_t returnData[ledCount][3] = {};
 
-    for (size_t i = 0; i < data.length; i++){
+    for (size_t i = 0; i < data.length(); i++){
         if(data[i]["ty"] == "oc"){
 
         }
@@ -81,9 +81,9 @@ void EffectEngine::tick(){
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
 
-        for (size_t i = 0; i < effectData["la"].length; i++){
+        for (size_t i = 0; i < effectData["la"].length(); i++){
             long checkTime = 0;
-            for (size_t e = 0; e < effectData["la"][i].length; e++){
+            for (size_t e = 0; e < effectData["la"][i].length(); e++){
                 
                 checkTime += (long)effectData["la"][i][e]["du"];
                 checkTime += (long)effectData["la"][i][e]["de"];
