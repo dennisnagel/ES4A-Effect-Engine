@@ -14,15 +14,15 @@ void EffectEngine::setData(String data){
     if(data.charAt(0) == 'f'){
         data.remove(0, 1);
         JSONVar newData = JSON.parse(data);
-        //effect = true;
+        effect = true;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             Serial.println("effect");
             Serial.println(data);
             effectData = newData;
-        //    startTime[effectData["la"].length()] = {}; 
-        //    for (size_t i = 0; i < effectData["la"].length(); i++){
-        //        startTime[i] = millis();
-        //    }
+            startTime[effectData["la"].length()] = {}; 
+            for (size_t i = 0; i < effectData["la"].length(); i++){
+                startTime[i] = millis();
+            }
         }
     }
     else{
