@@ -21,9 +21,6 @@ void EffectEngine::setData(String data){
         effectData = JSON.parse(data);
         if(updateFunctionRGB) updateFunctionRGB({0},{0},{0});
         uint8_t red, green, blue;
-        uint8_t redarray[ledCount] = {};
-        uint8_t greenarray[ledCount] = {};
-        uint8_t bluearray[ledCount] = {};
         double hue, saturation, value;
 
         hue = (int)effectData["h"];
