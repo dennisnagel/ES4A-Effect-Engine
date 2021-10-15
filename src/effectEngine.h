@@ -24,7 +24,7 @@
 			void setListenerRGB(callbackFunctionRGB function);
 	
 		private:
-			void HsvToRgb(JSONVar data, uint8_t & returnData[]);
+			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
 			void buildPattern(JSONVar data, uint8_t & returnData[][]);
 			JSONVar effectData;
 			int effectBrightness = 100;
