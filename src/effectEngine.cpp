@@ -13,10 +13,14 @@ EffectEngine::EffectEngine(int leds){
 void EffectEngine::setData(String data){
     if(data.charAt(0) == 'f'){
         data.remove(0);
+        JSONVar newData = JSON.parse(data);
         effect = true;
-        effectData = JSON.parse(data);
-        for (size_t i = 0; i < effectData["la"].length(); i++){
-            startTime[i] = millis();
+        if(JSON.stringify(newData) != JSON.stringify(effectData)){
+            effectData = newData;
+            startTime = {}; 
+            for (size_t i = 0; i < effectData["la"].length(); i++){
+                startTime[i] = millis();
+            }
         }
     }
     else{
@@ -67,14 +71,64 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
     JSONVar returnData = JSON.parse("[]");
 
     for (size_t i = 0; i < ledCount; i++){
-        returnData[i][0] = 0;
-        returnData[i][1] = 0;
-        returnData[i][2] = 0;
+        returnData[i][0] = NULL;
+        returnData[i][1] = NULL;
+        returnData[i][2] = NULL;
     }
 
     for (size_t i = 0; i < data.length(); i++){
         if(String((const char*)data[i]["ty"]) == "oc"){
+            uint8_t red, green, blue;
+            HsvToRgb(data[i]["co"], red, green, blue);
+            int start = map((int)data[i]["st"], 0, 1000, 0, ledCount);
+            int end = map((int)data[i]["en"], 0, 1000, 0, ledCount);
+            int count = end - start;
+            for (size_t e = 0; e <= count; e++){
+                returnData[e + start][0] = red;
+                returnData[e + start][1] = green;
+                returnData[e + start][2] = blue;
+            }
+        }
+    }
 
+    return returnData;
+}
+
+JSONVar EffectEngine::mergePattern(JSONVar data1, JSONVar data2){//TODO otimise to use less variables(proces on data1 oder data2)
+    for (size_t i = 0; i < ledCount; i++){
+        if((int)data2[i][0] != NULL){
+            data1[i][0] = (int)data2[i][0];
+            data1[i][1] = (int)data2[i][1];
+            data1[i][2] = (int)data2[i][2];
+        }
+    }
+
+    return data1;
+}
+
+JSONVar EffectEngine::buildLayer(JSONVar data, int index){
+    JSONVar returnData = JSON.parse("[]");
+
+    for (size_t i = 0; i < ledCount; i++){
+        returnData[i][0] = NULL;
+        returnData[i][1] = NULL;
+        returnData[i][2] = NULL;
+    }
+
+    long procTime = millis() - startTime[index];
+    long checkTime = 0;
+
+    for (size_t i = 0; i < data.length(); i++){
+        if(checkTime < procTime){
+            if(String((const char*)data[i]["ty"]) == "st"){
+                JSONVar pattern = buildPattern(data[i]["da"]);
+                returnData = mergePattern(returnData, pattern);
+            }
+        }
+        checkTime += (long)data[i]["du"];
+        checkTime += (long)data[i]["de"];
+        if(i == data.length() - 1 && procTime > checkTime){
+            startTime[index] = millis();
         }
     }
 
@@ -83,21 +137,28 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
 
 void EffectEngine::tick(){
     if(effect){
+        JSONVar returnData = JSON.parse("[]");
+
+        for (size_t i = 0; i < ledCount; i++){
+            returnData[i][0] = 0;
+            returnData[i][1] = 0;
+            returnData[i][2] = 0;
+        }
+
+        for (size_t i = 0; i < effectData["la"].length(); i++){
+            JSONVar layer = buildLayer(effectData["la"][i], i);
+            returnData = mergePattern(returnData, layer);
+        }
+
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
 
-        for (size_t i = 0; i < effectData["la"].length(); i++){
-           // long checkTime = 0;
-            for (size_t e = 0; e < effectData["la"][i].length(); e++){
-                
-                //checkTime += (long)effectData["la"][i][e]["du"];
-               // checkTime += (long)effectData["la"][i][e]["de"];
-            }
+        for (size_t i = 0; i < ledCount; i++){
+            redarray[i] = returnData[i][0];
+            greenarray[i] = returnData[i][1];
+            bluearray[i] = returnData[i][2];
         }
-
-
-
 
         if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
     }
