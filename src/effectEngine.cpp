@@ -139,7 +139,7 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 
 void EffectEngine::tick(){
     if(effect){
-        JSONVar returnData = JSON.parse("[]");
+        /*JSONVar returnData = JSON.parse("[]");
 
         for (size_t i = 0; i < ledCount; i++){
             returnData[i] = JSON.parse("[]");;
@@ -148,10 +148,10 @@ void EffectEngine::tick(){
             returnData[i][2] = 0;
         }
 
-        /*for (size_t i = 0; i < effectData["la"].length(); i++){
+        for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
             returnData = mergePattern(returnData, layer);
-        }*/
+        }
 
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
@@ -163,7 +163,7 @@ void EffectEngine::tick(){
             bluearray[i] = (int)returnData[i][2];
         }
 
-        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
+        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);*/
     }
 }
 
