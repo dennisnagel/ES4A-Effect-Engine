@@ -160,7 +160,7 @@ void EffectEngine::tick(){
                                     bluedatao[e] = 0;
                                 }
 
-                                int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["de"], 0, 100000);
+                                int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["du"], 0, 100000);
 
                                 if(unit < 0){
                                     unit = 0;
