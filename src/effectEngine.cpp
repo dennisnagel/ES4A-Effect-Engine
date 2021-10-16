@@ -11,7 +11,7 @@ EffectEngine::EffectEngine(int leds){
 }
 
 void EffectEngine::setData(String data){
-    if(oldData != data){
+    if(oldData.equals(data)){
         oldData = data;
         if(data.charAt(0) == 'f'){
             data.remove(0, 1);
