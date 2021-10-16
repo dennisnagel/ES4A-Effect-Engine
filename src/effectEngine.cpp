@@ -187,7 +187,7 @@ void EffectEngine::tick(){
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
 
-        if(updateFunction)  {updateFunction();}
+        //if(updateFunction)  {updateFunction();}
     }
 }
 
