@@ -30,12 +30,12 @@
 			JSONVar mergePattern(JSONVar data1, JSONVar data2);
 
 			JSONVar effectData;
+			callbackFunctionRGB updateFunction;
 			int effectBrightness = 100;
 			int ledCount = 60;
             int effectDelay = 50;
             bool effect = false;
 			long startTime[] = {};
-			callbackFunctionRGB updateFunction;
 		
 	};
 #endif //EffectEngine
