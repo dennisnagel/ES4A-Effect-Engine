@@ -73,15 +73,6 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
 }
 
 void EffectEngine::buildPattern(JSONVar data, uint8_t &reddata[], uint8_t &greendata[], uint8_t &bluedata[]){
-    /*JSONVar returnData = JSON.parse("[]");
-
-    for (size_t i = 0; i < ledCount; i++){
-        returnData[i] = JSON.parse("[]");
-        returnData[i][0] = NULL;
-        returnData[i][1] = NULL;
-        returnData[i][2] = NULL;
-    }*/
-
     for (size_t i = 0; i < data.length(); i++){
         if(String((const char*)data[i]["ty"]) == "oc"){
             uint8_t red, green, blue;
@@ -110,22 +101,20 @@ JSONVar EffectEngine::mergePattern(JSONVar data1, JSONVar data2){
 }
 
 void EffectEngine::buildLayer(JSONVar data, int index, uint8_t &reddata[], uint8_t &greendata[], uint8_t &bluedata[]){
-    /*JSONVar returnData = JSON.parse("[]");
-
-    for (size_t i = 0; i < ledCount; i++){
-        returnData[i] = JSON.parse("[]");
-        returnData[i][0] = NULL;
-        returnData[i][1] = NULL;
-        returnData[i][2] = NULL;
-    }*/
-
     long procTime = millis() - startTime[index];
     long checkTime = 0;
 
     for (size_t i = 0; i < data.length(); i++){
         if(checkTime < procTime){
             if(String((const char*)data[i]["ty"]) == "st"){
-                JSONVar pattern = buildPattern(data[i]["da"], reddata, greendata, bluedata);
+                uint8_t reddatap[ledCount] = {};
+                uint8_t greendatap[ledCount] = {};
+                uint8_t bluedatap[ledCount] = {};
+                buildPattern(data[i]["da"], reddatap, greendatap, bluedatap);
+
+                reddata = reddatap;
+                greendata = greendatap;
+                bluedata = bluedatap;
                 //Serial.println(JSON.stringify(pattern));
                 //returnData = mergePattern(returnData, pattern);
             }
