@@ -9,7 +9,7 @@
 	#include <Arduino_JSON.h>
 
 	extern "C" {
-		typedef void (*callbackFunctionRGB)();
+		typedef void (*callbackFunction)();
 	}
 	
 	class EffectEngine{
@@ -35,7 +35,7 @@
             int effectDelay = 50;
             bool effect = false;
 			long startTime[] = {};
-			callbackFunctionRGB updateFunctionRGB;
+			callbackFunction updateFunction;
 		
 	};
 #endif //EffectEngine
