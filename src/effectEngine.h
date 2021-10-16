@@ -25,6 +25,7 @@
 	
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
+			void buildPattern(JSONVar data);
 
 			JSONVar effectData;
 			callbackFunctionRGB updateFunctionRGB;
@@ -33,6 +34,9 @@
             int effectDelay = 50;
             bool effect = false;
 			long startTime[] = {};
+			uint8_t reddata[] = {};
+        	uint8_t greendata[] = {};
+        	uint8_t bluedata[] = {};
 		
 	};
 #endif //EffectEngine
