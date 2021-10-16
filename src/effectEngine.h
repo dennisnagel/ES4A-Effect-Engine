@@ -21,7 +21,7 @@
             void tick();
             void setData(String data);
 			void setBrightness(int brightness);
-			void setListenerRGB(callbackFunctionRGB function);
+			void setListenerRGB(callbackFunction function);
 	
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
