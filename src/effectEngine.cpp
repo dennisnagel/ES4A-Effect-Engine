@@ -106,7 +106,7 @@ void EffectEngine::tick(){
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
                         //Start build Pattern
-                        buildPattern(effectData["la"][l][i]["da"], &reddata, &greendata, &bluedata);
+                        buildPattern(effectData["la"][l][i]["da"], reddata, greendata, bluedata);
                          /*   for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
                                 if(String((const char*)effectData["la"][l][i]["da"][p]["ty"]) == "oc"){
                                     uint8_t red, green, blue;
