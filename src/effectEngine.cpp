@@ -161,12 +161,6 @@ void EffectEngine::tick(){
             returnData = mergePattern(returnData, layer);
         }*/
 
-        for (size_t i = 0; i < ledCount; i++){
-            reddata[i] = (int)returnData[i][0];
-            greendata[i] = (int)returnData[i][1];
-            bluedata[i] = (int)returnData[i][2];
-        }
-
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);
     }
 }
