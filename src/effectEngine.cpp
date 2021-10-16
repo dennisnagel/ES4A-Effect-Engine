@@ -164,7 +164,7 @@ void EffectEngine::tick(){
         }*/
 
 //Serial.print("Test2");
-        *uint8_t reddata[ledCount] = {};
+        uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
         uint8_t bluedata[ledCount] = {};
 
