@@ -129,7 +129,7 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
         if(checkTime < procTime){
             if(String((const char*)data[i]["ty"]) == "st"){
                 JSONVar pattern = buildPattern(data[i]["da"]);
-                Serial.println("pattern"+ JSON.stringify(pattern));
+                Serial.println(JSON.stringify(pattern));
                 returnData = mergePattern(returnData, pattern);
             }
         }
@@ -156,7 +156,7 @@ void EffectEngine::tick(){
 
         for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
-            Serial.println(JSON.stringify(layer));
+            //Serial.println(JSON.stringify(layer));
             returnData = mergePattern(returnData, layer);
         }
 
