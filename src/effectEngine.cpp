@@ -187,6 +187,6 @@ void EffectEngine::tick(){
     }
 }
 
-void EffectEngine::setListenerRGB(callbackFunction function){
+void EffectEngine::setListenerRGB(callbackFunctionRGB function){
     updateFunction = function;
 }
