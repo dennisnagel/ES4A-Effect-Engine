@@ -106,19 +106,17 @@ void EffectEngine::tick(){
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
                         //Start build Pattern
-                        buildPattern(effectData["la"][l][i]["da"], reddata, greendata, bluedata);
-                         /*   for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
-                                if(String((const char*)effectData["la"][l][i]["da"][p]["ty"]) == "oc"){
-                                    uint8_t red, green, blue;
-                                    HsvToRgb(effectData["la"][l][i]["da"][p]["co"], red, green, blue);
-                                    int start = map((int)effectData["la"][l][i]["da"][p]["st"], 0, 1000, 0, ledCount);
-                                    for (size_t e = 0; e < map((int)effectData["la"][l][i]["da"][p]["en"], 0, 1000, 0, ledCount) - start; e++){
-                                        reddata[e + start] = red; //intergate brightness
-                                        greendata[e + start] = green;
-                                        bluedata[e + start] = blue;
-                                    }
-                                }
-                            }*/
+                        uint8_t reddatap[ledCount] = {};
+                        uint8_t greendatap[ledCount] = {};
+                        uint8_t bluedatap[ledCount] = {};
+                        buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
+                        for (size_t e = 0; e < ledCount; e++){
+                            if(reddatap[e] != NULL){
+                                reddata[i] = reddatap[e];
+                                greendata[i] = greendatap[e];
+                                bluedata[i] = bluedatap[e];
+                            }
+                        }
                         //End Build Pattern
                         
                     }
