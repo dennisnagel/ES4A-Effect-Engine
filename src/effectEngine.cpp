@@ -102,9 +102,9 @@ void EffectEngine::tick(){
                                     HsvToRgb(effectData["la"][l][i]["da"][p]["co"], red, green, blue);
                                     int start = map((int)effectData["la"][l][i]["da"][p]["st"], 0, 1000, 0, ledCount);
                                     for (size_t e = 0; e <= map((int)effectData["la"][l][i]["da"][p]["en"], 0, 1000, 0, ledCount) - start; e++){
-                                        reddata[e + start][0] = red;
-                                        greendata[e + start][1] = green;
-                                        bluedata[e + start][2] = blue;
+                                        reddata[e + start] = red;
+                                        greendata[e + start] = green;
+                                        bluedata[e + start] = blue;
                                     }
                                 }
                             }
