@@ -29,6 +29,7 @@
 			JSONVar buildLayer(JSONVar data, int index);
 			JSONVar mergePattern(JSONVar data1, JSONVar data2);
 
+			String oldData = "";
 			JSONVar effectData;
 			callbackFunctionRGB updateFunction;
 			int effectBrightness = 100;
