@@ -11,24 +11,27 @@ EffectEngine::EffectEngine(int leds){
 }
 
 void EffectEngine::setData(String data){
-    if(oldData.equals(data)){
-        oldData = data;
-        if(data.charAt(0) == 'f'){
-            data.remove(0, 1);
-            effect = true;
+    if(data.charAt(0) == 'f'){
+        data.remove(0, 1);
+        JSONVar newData = JSON.parse(data);
+        effect = true;
+        if(!JSON.stringify(newData).equals(JSON.stringify(effectData))){
             Serial.println("effect");
             Serial.println(data);
-            effectData = JSON.parse(data);
+            effectData = newData;
             startTime[effectData["la"].length()] = {}; 
             for (size_t i = 0; i < effectData["la"].length(); i++){
                 startTime[i] = millis();
             }
         }
-        else{
-            effect = false;
+    }
+    else{
+        JSONVar newData = JSON.parse(data);
+        effect = false;
+        if(!JSON.stringify(newData).equals(JSON.stringify(effectData))){
             Serial.println("patt");
             JSONVar returnData = JSON.parse("[]");
-            effectData = JSON.parse(data);
+            effectData = newData;
             uint8_t color[3] = {0, 0, 0};
             HsvToRgb(effectData, color[0], color[1], color[2]); 
             uint8_t redarray[ledCount] = {};
@@ -48,7 +51,7 @@ void EffectEngine::setData(String data){
                 //greenarray[i] = color[1];
                 //bluearray[i] = color[2];
             }
-            //if(updateFunction) updateFunction();
+            if(updateFunction) updateFunction();
         }
     }
 }
