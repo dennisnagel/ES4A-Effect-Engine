@@ -183,7 +183,7 @@ void EffectEngine::tick(){
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
 
-        if(updateFunctionRGB)  {updateFunctionRGB( JSON.parse("[]"));}
+        //if(updateFunctionRGB)  {updateFunctionRGB( JSON.parse("[]"));}
     }
 }
 
