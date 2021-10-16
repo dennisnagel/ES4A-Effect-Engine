@@ -110,7 +110,6 @@ void EffectEngine::tick(){
                             }
                         //End Build Pattern
                         
-                        buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
                     }
                 }
                 checkTime += (long)effectData["la"][l][i]["du"];
