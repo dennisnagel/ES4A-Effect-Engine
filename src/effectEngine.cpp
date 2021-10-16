@@ -154,11 +154,11 @@ void EffectEngine::tick(){
             returnData[i][2] = 0;
         }
 
-        for (size_t i = 0; i < effectData["la"].length(); i++){
+        /*for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
             //Serial.println(JSON.stringify(layer));
             returnData = mergePattern(returnData, layer);
-        }
+        }*/
 
         uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
