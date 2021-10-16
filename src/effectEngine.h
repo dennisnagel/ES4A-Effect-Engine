@@ -1,9 +1,5 @@
 #ifndef EffectEngine_h
 	#define EffectEngine_h
-	
-	extern "C" {
-		typedef void (*callbackFunctionRGB)(JSONVar);
-	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
 		#include "Arduino.h"
@@ -11,6 +7,10 @@
 		#include "WProgram.h"
 	#endif 
 	#include <Arduino_JSON.h>
+
+	extern "C" {
+		typedef void (*callbackFunctionRGB)(JSONVar);
+	}
 	
 	class EffectEngine{
 		public:	
