@@ -90,7 +90,6 @@ void EffectEngine::tick(){
         uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
         uint8_t bluedata[ledCount] = {};
-        uint8_t uninit;
 
         for (size_t i = 0; i < ledCount; i++){
             reddata[i] = 0;
@@ -112,7 +111,7 @@ void EffectEngine::tick(){
                         uint8_t bluedatap[ledCount] = {};
                         buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
                         for (size_t e = 0; e < ledCount; e++){
-                            if(reddatap[e] != uninit){
+                            if(reddatap[e] >= 0){
                                 reddata[i] = reddatap[e];
                                 greendata[i] = greendatap[e];
                                 bluedata[i] = bluedatap[e];
