@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 
 	extern "C" {
-		typedef void (*callbackFunctionRGB)();
+		typedef void (*callbackFunctionRGB)(uint8_t r[], uint8_t g[], uint8_t b[]);
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
@@ -30,7 +30,7 @@
 			JSONVar mergePattern(JSONVar data1, JSONVar data2);
 
 			JSONVar effectData;
-			callbackFunctionRGB updateFunction;
+			callbackFunctionRGB updateFunctionRGB;
 			int effectBrightness = 100;
 			int ledCount = 60;
             int effectDelay = 50;
