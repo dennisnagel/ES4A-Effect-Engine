@@ -26,29 +26,32 @@ void EffectEngine::setData(String data){
         }
     }
     else{
-        JSONVar returnData = JSON.parse("[]");
-        effect = false;
-        effectData = JSON.parse(data);
-        uint8_t color[3] = {0, 0, 0};
-        HsvToRgb(effectData, color[0], color[1], color[2]); 
-        uint8_t redarray[ledCount] = {};
-        uint8_t greenarray[ledCount] = {};
-        uint8_t bluearray[ledCount] = {};
+        JSONVar newData = JSON.parse(data);
+        if(JSON.stringify(newData) != JSON.stringify(effectData)){
+            JSONVar returnData = JSON.parse("[]");
+            effect = false;
+            effectData = newData;
+            uint8_t color[3] = {0, 0, 0};
+            HsvToRgb(effectData, color[0], color[1], color[2]); 
+            uint8_t redarray[ledCount] = {};
+            uint8_t greenarray[ledCount] = {};
+            uint8_t bluearray[ledCount] = {};
 
-        color[0] = (color[0] * effectBrightness) / 100;
-        color[1] = (color[1] * effectBrightness) / 100;
-        color[2] = (color[2] * effectBrightness) / 100;
+            color[0] = (color[0] * effectBrightness) / 100;
+            color[1] = (color[1] * effectBrightness) / 100;
+            color[2] = (color[2] * effectBrightness) / 100;
 
-        for (size_t i = 0; i < ledCount; i++){
-            returnData[i] = JSON.parse("[]");
-            returnData[i][0] = color[0];
-            returnData[i][1] = color[1];
-            returnData[i][2] = color[2];
-            //redarray[i] = color[0];
-            //greenarray[i] = color[1];
-            //bluearray[i] = color[2];
+            for (size_t i = 0; i < ledCount; i++){
+                returnData[i] = JSON.parse("[]");
+                returnData[i][0] = color[0];
+                returnData[i][1] = color[1];
+                returnData[i][2] = color[2];
+                //redarray[i] = color[0];
+                //greenarray[i] = color[1];
+                //bluearray[i] = color[2];
+            }
+            if(updateFunction) updateFunction();
         }
-        if(updateFunction) updateFunction();
     }
 }
 
