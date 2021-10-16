@@ -174,6 +174,47 @@ void EffectEngine::tick(){
                                 bluedata[e] = map(unit, 0, 100000, bluedatao[e], bluedatan[e]);
                             }
                         }
+                        
+                    }
+                    if(String((const char*)effectData["la"][l][i]["ty"]) == "sl"){
+                        int fp = (int)effectData["la"][l][i]["fp"];
+                        int tp = (int)effectData["la"][l][i]["tp"];
+                        fp = map(fp, 0, 1000, 0, ledCount - 1);
+                        tp = map(tp, 0, 1000, 0, ledCount - 1);
+                        uint8_t reddatan[ledCount] = {};
+                        uint8_t greendatan[ledCount] = {};
+                        uint8_t bluedatan[ledCount] = {};
+                        for (size_t e = 0; e < ledCount; e++){
+                            reddatan[i] = NULL;
+                            greendatan[i] = NULL;
+                            bluedatan[i] = NULL;
+                        }
+                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan);
+                        for (size_t e = 0; e < ledCount; e++){
+                            if(reddatan[e] >= 0){
+                                int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["du"], 0, 100000);
+
+                                if(unit < 0){
+                                    unit = 0;
+                                }
+                                if(unit > 100000){
+                                    unit = 100000;
+                                }
+                                int pos = e + map(unit, 0, 100000, fp, tp);
+
+                                if(pos < 0){
+                                    pos = ledCount + pos;
+                                }
+
+                                if(pos > ledCount - 1){
+                                    pos = pos - ledCount;
+                                }
+
+                                reddata[pos] = reddatan[e];
+                                greendata[pos] = greendatan[e];
+                                bluedata[pos] = bluedatan[e];
+                            }
+                        }
                         //End Build Pattern
                         
                     }
