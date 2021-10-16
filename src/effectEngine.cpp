@@ -82,6 +82,19 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
                 bluedata[e + start] = blue;
             }
         }
+        if(String((const char*)data[p]["ty"]) == "fa"){
+            uint8_t red1, green1, blue1, red2, green2, blue2;
+            HsvToRgb(data[p]["cs"], red1, green1, blue1);
+            HsvToRgb(data[p]["ce"], red2, green2, blue2);
+            int end = map((int)data[p]["en"], 0, 1000, 0, ledCount);
+            int start = map((int)data[p]["st"], 0, 1000, 0, ledCount);
+            int count = end - start;
+            for (size_t e = 0; e < count; e++){
+                reddata[e + start] = map(e, 0, count, red1, red2); //intergate brightness
+                greendata[e + start] = map(e, 0, count, green1, green2);
+                bluedata[e + start] = map(e, 0, count, blue1, blue2);
+            }
+        }
     }
 }
 
@@ -105,7 +118,6 @@ void EffectEngine::tick(){
             for (size_t i = 0; i < effectData["la"][l].length(); i++){
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
-                        //Start build Pattern
                         uint8_t reddatap[ledCount] = {};
                         uint8_t greendatap[ledCount] = {};
                         uint8_t bluedatap[ledCount] = {};
@@ -122,8 +134,6 @@ void EffectEngine::tick(){
                                 bluedata[e] = bluedatap[e];
                             }
                         }
-                        //End Build Pattern
-                        
                     }
 
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "fa"){
@@ -214,9 +224,7 @@ void EffectEngine::tick(){
                                 greendata[pos] = greendatan[e];
                                 bluedata[pos] = bluedatan[e];
                             }
-                        }
-                        //End Build Pattern
-                        
+                        }                        
                     }
                 }
                 checkTime += (long)effectData["la"][l][i]["du"];
