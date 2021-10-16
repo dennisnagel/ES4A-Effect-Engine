@@ -88,7 +88,7 @@ void EffectEngine::tick(){
         for (size_t l = 0; l < effectData["la"].length(); l++){
 
             //build Layver Start
-            long procTime = millis() - startTime[index];
+            long procTime = millis() - startTime[l];
             long checkTime = 0;
 
             for (size_t i = 0; i < effectData["la"][l].length(); i++){
@@ -115,7 +115,7 @@ void EffectEngine::tick(){
                 checkTime += (long)effectData["la"][l][i]["du"];
                 checkTime += (long)effectData["la"][l][i]["de"];
                 if(i == effectData["la"][l].length() - 1 && procTime > checkTime){
-                    startTime[i] = millis();
+                    startTime[l] = millis();
                 }
             }
             //build LayverEnd
