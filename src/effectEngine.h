@@ -9,7 +9,7 @@
 	#include <Arduino_JSON.h>
 
 	extern "C" {
-		typedef void (*callbackFunctionRGB)(JSONVar);
+		typedef void (*callbackFunctionRGB)();
 	}
 	
 	class EffectEngine{
