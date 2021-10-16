@@ -127,7 +127,10 @@ void EffectEngine::tick(){
                     }
 
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "fa"){
-                        //Start build Pattern
+                        int oldval = i - 1;
+                        if(oldval < 0){
+                            oldval = effectData["la"][l].length() - 1;
+                        }
                         uint8_t reddatao[ledCount] = {};
                         uint8_t greendatao[ledCount] = {};
                         uint8_t bluedatao[ledCount] = {};
@@ -143,13 +146,34 @@ void EffectEngine::tick(){
                             bluedatan[i] = NULL;
                         }
                         buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan);
-                        /*for (size_t e = 0; e < ledCount; e++){
-                            if(reddatap[e] >= 0){
-                                reddata[e] = reddatap[e];
-                                greendata[e] = greendatap[e];
-                                bluedata[e] = bluedatap[e];
+                        buildPattern(effectData["la"][l][oldval]["da"], reddatao, greendatao, bluedatao);
+                        for (size_t e = 0; e < ledCount; e++){
+                            if(reddatan[e] >= 0 || reddatao[e] >= 0){
+                                if(!(reddatan[e] >= 0)){
+                                    reddatan[e] = 0;
+                                    greendatan[e] = 0;
+                                    bluedatan[e] = 0;
+                                }
+                                if(!(reddatao[e] >= 0)){
+                                    reddatao[e] = 0;
+                                    greendatao[e] = 0;
+                                    bluedatao[e] = 0;
+                                }
+
+                                int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["de"], 0, 100000);
+
+                                if(unit < 0){
+                                    unit = 0;
+                                }
+                                if(unit > 100000){
+                                    unit = 100000;
+                                }
+
+                                reddata[e] = map(unit, 0, 100000, reddatao[e], reddatan[e]);
+                                greendata[e] = map(unit, 0, 100000, greendatao[e], greendatan[e]);
+                                bluedata[e] = map(unit, 0, 100000, bluedatao[e], bluedatan[e]);
                             }
-                        }*/
+                        }
                         //End Build Pattern
                         
                     }
