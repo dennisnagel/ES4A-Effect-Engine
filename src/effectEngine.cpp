@@ -142,7 +142,7 @@ void EffectEngine::tick(){
                             greendatan[i] = NULL;
                             bluedatan[i] = NULL;
                         }
-                        buildPattern(effectData["la"][l][i]["da"], reddatapn, greendatapn, bluedatapn);
+                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan);
                         /*for (size_t e = 0; e < ledCount; e++){
                             if(reddatap[e] >= 0){
                                 reddata[e] = reddatap[e];
