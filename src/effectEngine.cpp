@@ -110,9 +110,9 @@ void EffectEngine::tick(){
                         uint8_t greendatap[ledCount] = {};
                         uint8_t bluedatap[ledCount] = {};
                         for (size_t e = 0; e < ledCount; e++){
-                            reddata[i] = NULL;
-                            greendata[i] = NULL;
-                            bluedata[i] = NULL;
+                            reddatap[i] = NULL;
+                            greendatap[i] = NULL;
+                            bluedatap[i] = NULL;
                         }
                         buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
                         for (size_t e = 0; e < ledCount; e++){
@@ -122,6 +122,34 @@ void EffectEngine::tick(){
                                 bluedata[e] = bluedatap[e];
                             }
                         }
+                        //End Build Pattern
+                        
+                    }
+
+                    if(String((const char*)effectData["la"][l][i]["ty"]) == "fa"){
+                        //Start build Pattern
+                        uint8_t reddatao[ledCount] = {};
+                        uint8_t greendatao[ledCount] = {};
+                        uint8_t bluedatao[ledCount] = {};
+                        uint8_t reddatan[ledCount] = {};
+                        uint8_t greendatan[ledCount] = {};
+                        uint8_t bluedatan[ledCount] = {};
+                        for (size_t e = 0; e < ledCount; e++){
+                            reddatao[i] = NULL;
+                            greendatao[i] = NULL;
+                            bluedatao[i] = NULL;
+                            reddatan[i] = NULL;
+                            greendatan[i] = NULL;
+                            bluedatan[i] = NULL;
+                        }
+                        buildPattern(effectData["la"][l][i]["da"], reddatapn, greendatapn, bluedatapn);
+                        /*for (size_t e = 0; e < ledCount; e++){
+                            if(reddatap[e] >= 0){
+                                reddata[e] = reddatap[e];
+                                greendata[e] = greendatap[e];
+                                bluedata[e] = bluedatap[e];
+                            }
+                        }*/
                         //End Build Pattern
                         
                     }
