@@ -1,16 +1,16 @@
 #ifndef EffectEngine_h
 	#define EffectEngine_h
 
+	extern "C" {
+		typedef void (*callbackFunction)();
+	}
+
 	#if defined(ARDUINO) && ARDUINO >= 100
 		#include "Arduino.h"
 		#else
 		#include "WProgram.h"
 	#endif 
 	#include <Arduino_JSON.h>
-
-	extern "C" {
-		typedef void (*callbackFunction)();
-	}
 	
 	class EffectEngine{
 		public:	
