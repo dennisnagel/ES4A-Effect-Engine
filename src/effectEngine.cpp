@@ -28,6 +28,7 @@ void EffectEngine::setData(String data){
     else{
         JSONVar newData = JSON.parse(data);
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
+             Serial.println("patt");
             JSONVar returnData = JSON.parse("[]");
             effect = false;
             effectData = newData;
