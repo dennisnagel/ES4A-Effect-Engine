@@ -95,7 +95,7 @@ void EffectEngine::tick(){
                 Serial.println("Step->" + String(i));
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
-
+                        Serial.println("st");
                         //Start build Pattern
                             for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
                                 Serial.println("Ef->" + String(p));
