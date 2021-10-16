@@ -129,6 +129,7 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
         if(checkTime < procTime){
             if(String((const char*)data[i]["ty"]) == "st"){
                 JSONVar pattern = buildPattern(data[i]["da"]);
+                Serial.println("pattern" + String(i) + JSON.stringify(pattern));
                 returnData = mergePattern(returnData, pattern);
             }
         }
