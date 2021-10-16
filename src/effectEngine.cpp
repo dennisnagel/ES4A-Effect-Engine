@@ -29,7 +29,9 @@ void EffectEngine::setData(String data){
         JSONVar newData = JSON.parse(data);
         effect = false;
         if(!JSON.stringify(newData).equals(JSON.stringify(effectData))){
-            Serial.println("patt");
+            Serial.println(JSON.stringify(newData));
+    Serial.println(JSON.stringify(effectData));
+            //Serial.println("patt");
             JSONVar returnData = JSON.parse("[]");
             effectData = newData;
             uint8_t color[3] = {0, 0, 0};
@@ -51,7 +53,7 @@ void EffectEngine::setData(String data){
                 //greenarray[i] = color[1];
                 //bluearray[i] = color[2];
             }
-            if(updateFunction) updateFunction();
+            //if(updateFunction) updateFunction();
         }
     }
 }
