@@ -30,20 +30,20 @@ void EffectEngine::setData(String data){
             effectData = newData;
             uint8_t color[3] = {0, 0, 0};
             HsvToRgb(effectData, color[0], color[1], color[2]); 
-            reddata[ledCount] = {};
-            greendata[ledCount] = {};
-            bluedata[ledCount] = {};
+            uint8_t redarray[ledCount] = {};
+            uint8_t greenarray[ledCount] = {};
+            uint8_t bluearray[ledCount] = {};
 
             color[0] = (color[0] * effectBrightness) / 100;
             color[1] = (color[1] * effectBrightness) / 100;
             color[2] = (color[2] * effectBrightness) / 100;
 
             for (size_t i = 0; i < ledCount; i++){
-                reddata[i] = color[0];
-                greendata[i] = color[1];
-                bluedata[i] = color[2];
+                redarray[i] = color[0];
+                greenarray[i] = color[1];
+                bluearray[i] = color[2];
             }
-            if(updateFunctionRGB) updateFunctionRGB(reddata, greendata, bluedata);
+            if(updateFunctionRGB) updateFunctionRGB(redarray, greenarray, bluearray);
         }
     }
 }
