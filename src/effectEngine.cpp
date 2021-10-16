@@ -114,8 +114,8 @@ void EffectEngine::tick(){
                 }
                 checkTime += (long)effectData["la"][l][i]["du"];
                 checkTime += (long)effectData["la"][l][i]["de"];
-                if(i == data.length() - 1 && procTime > checkTime){
-                    startTime[index] = millis();
+                if(i == effectData["la"][l].length() - 1 && procTime > checkTime){
+                    startTime[i] = millis();
                 }
             }
             //build LayverEnd
