@@ -139,9 +139,43 @@ void EffectEngine::tick(){
             bluedata[i] = 0;
         }
 
-        for (size_t i = 0; i < effectData["la"].length(); i++){
-            JSONVar layer = buildLayer(effectData["la"][i], i, reddata, greendata, bluedata);
+        for (size_t l = 0; l < effectData["la"].length(); l++){
+
+            //build Layver Start
+            long procTime = millis() - startTime[index];
+            long checkTime = 0;
+
+            for (size_t i = 0; i < effectData["la"][l].length(); i++){
+                if(checkTime < procTime){
+                    if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
+
+                        //Start build Pattern
+                            for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
+                                if(String((const char*)effectData["la"][l][i]["da"][p]["ty"]) == "oc"){
+                                    uint8_t red, green, blue;
+                                    HsvToRgb(effectData["la"][l][i]["da"][p]["co"], red, green, blue);
+                                    int start = map((int)effectData["la"][l][i]["da"][p]["st"], 0, 1000, 0, ledCount);
+                                    for (size_t e = 0; e <= map((int)effectData["la"][l][i]["da"][p]["en"], 0, 1000, 0, ledCount) - start; e++){
+                                        reddata[e + start][0] = red;
+                                        greendata[e + start][1] = green;
+                                        bluedata[e + start][2] = blue;
+                                    }
+                                }
+                            }
+                        //End Build Pattern
+                        
+                        buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
+                    }
+                }
+                checkTime += (long)effectData["la"][l][i]["du"];
+                checkTime += (long)effectData["la"][l][i]["de"];
+                if(i == data.length() - 1 && procTime > checkTime){
+                    startTime[index] = millis();
+                }
+            }
             //returnData = mergePattern(returnData, layer);
+            //build LayverEnd
+
         }
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);
