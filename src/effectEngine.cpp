@@ -96,6 +96,7 @@ void EffectEngine::tick(){
                 Serial.println("CT->" + String(checkTime));
                 Serial.println("PT->" + String(procTime));
                 if(checkTime < procTime){
+                    Serial.println("Time");
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
                         Serial.println("st");
                         //Start build Pattern
