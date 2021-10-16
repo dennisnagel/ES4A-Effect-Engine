@@ -93,6 +93,8 @@ void EffectEngine::tick(){
 
             for (size_t i = 0; i < effectData["la"][l].length(); i++){
                 Serial.println("Step->" + String(i));
+                Serial.println("CT->"String(checkTime));
+                Serial.println("PT->"String(procTime));
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
                         Serial.println("st");
