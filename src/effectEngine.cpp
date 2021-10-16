@@ -30,7 +30,6 @@ void EffectEngine::setData(String data){
         effect = false;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             Serial.println("patt");
-            JSONVar returnData = JSON.parse("[]");
             effectData = newData;
             uint8_t color[3] = {0, 0, 0};
             HsvToRgb(effectData, color[0], color[1], color[2]); 
@@ -43,10 +42,6 @@ void EffectEngine::setData(String data){
             color[2] = (color[2] * effectBrightness) / 100;
 
             for (size_t i = 0; i < ledCount; i++){
-                returnData[i] = JSON.parse("[]");
-                returnData[i][0] = color[0];
-                returnData[i][1] = color[1];
-                returnData[i][2] = color[2];
                 redarray[i] = color[0];
                 greenarray[i] = color[1];
                 bluearray[i] = color[2];
@@ -82,6 +77,7 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
     JSONVar returnData = JSON.parse("[]");
 
     for (size_t i = 0; i < ledCount; i++){
+        returnData[i] = JSON.parse("[]");
         returnData[i][0] = NULL;
         returnData[i][1] = NULL;
         returnData[i][2] = NULL;
@@ -105,7 +101,7 @@ JSONVar EffectEngine::buildPattern(JSONVar data){
     return returnData;
 }
 
-JSONVar EffectEngine::mergePattern(JSONVar data1, JSONVar data2){//TODO otimise to use less variables(proces on data1 oder data2)
+JSONVar EffectEngine::mergePattern(JSONVar data1, JSONVar data2){
     for (size_t i = 0; i < ledCount; i++){
         if((int)data2[i][0] != NULL){
             data1[i][0] = (int)data2[i][0];
@@ -121,6 +117,7 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
     JSONVar returnData = JSON.parse("[]");
 
     for (size_t i = 0; i < ledCount; i++){
+        returnData[i] = JSON.parse("[]");
         returnData[i][0] = NULL;
         returnData[i][1] = NULL;
         returnData[i][2] = NULL;
@@ -157,12 +154,11 @@ void EffectEngine::tick(){
             returnData[i][2] = 0;
         }
 
-        /*for (size_t i = 0; i < effectData["la"].length(); i++){
+        for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
             returnData = mergePattern(returnData, layer);
-        }*/
+        }
 
-//Serial.print("Test2");
         uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
         uint8_t bluedata[ledCount] = {};
