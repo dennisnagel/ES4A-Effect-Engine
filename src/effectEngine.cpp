@@ -48,7 +48,7 @@ void EffectEngine::setData(String data){
                 //greenarray[i] = color[1];
                 //bluearray[i] = color[2];
             }
-            if(updateFunction) updateFunction();
+            //if(updateFunction) updateFunction();
         }
     }
 }
