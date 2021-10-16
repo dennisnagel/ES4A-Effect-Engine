@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 
 	extern "C" {
-		typedef void (*callbackFunction)();
+		typedef void (*callbackFunctionRGB)();
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
@@ -21,7 +21,7 @@
             void tick();
             void setData(String data);
 			void setBrightness(int brightness);
-			void setListenerRGB(callbackFunction function);
+			void setListenerRGB(callbackFunctionRGB function);
 	
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
@@ -35,7 +35,7 @@
             int effectDelay = 50;
             bool effect = false;
 			long startTime[] = {};
-			callbackFunction updateFunction;
+			callbackFunctionRGB updateFunction;
 		
 	};
 #endif //EffectEngine
