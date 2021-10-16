@@ -84,7 +84,7 @@ void EffectEngine::tick(){
         }
 
         for (size_t l = 0; l < effectData["la"].length(); l++){
-#            //build Layver Start
+           //build Layver Start
             long procTime = millis() - startTime[l];
             long checkTime = 0;
 
@@ -97,7 +97,7 @@ void EffectEngine::tick(){
                                     uint8_t red, green, blue;
                                     HsvToRgb(effectData["la"][l][i]["da"][p]["co"], red, green, blue);
                                     int start = map((int)effectData["la"][l][i]["da"][p]["st"], 0, 1000, 0, ledCount);
-                                    for (size_t e = 0; e <= map((int)effectData["la"][l][i]["da"][p]["en"], 0, 1000, 0, ledCount) - start; e++){
+                                    for (size_t e = 0; e < map((int)effectData["la"][l][i]["da"][p]["en"], 0, 1000, 0, ledCount) - start; e++){
                                         reddata[e + start] = red;
                                         greendata[e + start] = green;
                                         bluedata[e + start] = blue;
