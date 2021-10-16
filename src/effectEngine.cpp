@@ -26,6 +26,7 @@ void EffectEngine::setData(String data){
         }
     }
     else{
+        JSONVar returnData = JSON.parse("[]");
         effect = false;
         effectData = JSON.parse(data);
         uint8_t color[3] = {0, 0, 0};
@@ -39,11 +40,15 @@ void EffectEngine::setData(String data){
         color[2] = (color[2] * effectBrightness) / 100;
 
         for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = color[0];
-            greenarray[i] = color[1];
-            bluearray[i] = color[2];
+            returnData[i] = JSON.parse("[]");
+            returnData[i][0] = color[0];
+            returnData[i][1] = color[1];
+            returnData[i][2] = color[2];
+            //redarray[i] = color[0];
+            //greenarray[i] = color[1];
+            //bluearray[i] = color[2];
         }
-        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
+        if(updateFunctionRGB) updateFunctionRGB(returnData);
     }
 }
 
@@ -140,16 +145,16 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 void EffectEngine::tick(){
     if(effect){
         //Serial.print("Test1");
-        //JSONVar returnData = JSON.parse("[]");
+        JSONVar returnData = JSON.parse("[]");
 
-        /*for (size_t i = 0; i < ledCount; i++){
+        for (size_t i = 0; i < ledCount; i++){
             returnData[i] = JSON.parse("[]");
             returnData[i][0] = 0;
             returnData[i][1] = 0;
             returnData[i][2] = 0;
         }
 
-        for (size_t i = 0; i < effectData["la"].length(); i++){
+        /*for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
             returnData = mergePattern(returnData, layer);
         }*/
@@ -178,17 +183,7 @@ void EffectEngine::tick(){
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
 
-        uint8_t color[3] = {0, 0, 0};
-        uint8_t redarray[ledCount] = {};
-        uint8_t greenarray[ledCount] = {};
-        uint8_t bluearray[ledCount] = {};
-
-        for (size_t i = 0; i < ledCount; i++){
-            redarray[i] = color[0];
-            greenarray[i] = color[1];
-            bluearray[i] = color[2];
-        }
-        if(updateFunctionRGB) updateFunctionRGB(redarray,greenarray,bluearray);
+        if(updateFunctionRGB) updateFunctionRGB(returnData);
     }
 }
 
