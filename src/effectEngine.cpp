@@ -48,7 +48,7 @@ void EffectEngine::setData(String data){
             //greenarray[i] = color[1];
             //bluearray[i] = color[2];
         }
-        if(updateFunctionRGB) updateFunctionRGB(returnData);
+        if(updateFunctionRGB) updateFunctionRGB();
     }
 }
 
@@ -183,7 +183,7 @@ void EffectEngine::tick(){
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
 
-        //if(updateFunctionRGB)  {updateFunctionRGB( JSON.parse("[]"));}
+        if(updateFunctionRGB)  {updateFunctionRGB();}
     }
 }
 
