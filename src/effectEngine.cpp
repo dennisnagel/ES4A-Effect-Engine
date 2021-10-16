@@ -70,7 +70,7 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
     b = blue;
 }
 
-void EffectEngine::buildPattern(JSONVar data, uint8_t &reddata*, uint8_t &greendata*, uint8_t &bluedata*){
+void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[]){
     for (size_t p = 0; p < data.length(); p++){
         if(String((const char*)data[p]["ty"]) == "oc"){
             uint8_t red, green, blue;
@@ -106,7 +106,7 @@ void EffectEngine::tick(){
                 if(checkTime < procTime){
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
                         //Start build Pattern
-                        buildPattern(effectData["la"][l][i]["da"], reddata, greendata, bluedata);
+                        buildPattern(effectData["la"][l][i]["da"], &reddata, &greendata, &bluedata);
                          /*   for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
                                 if(String((const char*)effectData["la"][l][i]["da"][p]["ty"]) == "oc"){
                                     uint8_t red, green, blue;
