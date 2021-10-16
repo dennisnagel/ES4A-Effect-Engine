@@ -16,8 +16,6 @@ void EffectEngine::setData(String data){
         JSONVar newData = JSON.parse(data);
         effect = true;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
-            Serial.println("effect");
-            Serial.println(data);
             effectData = newData;
             startTime[effectData["la"].length()] = {}; 
             for (size_t i = 0; i < effectData["la"].length(); i++){
@@ -86,24 +84,16 @@ void EffectEngine::tick(){
         }
 
         for (size_t l = 0; l < effectData["la"].length(); l++){
-            Serial.println("Layer->" + String(l));
-            //build Layver Start
+#            //build Layver Start
             long procTime = millis() - startTime[l];
             long checkTime = 0;
 
             for (size_t i = 0; i < effectData["la"][l].length(); i++){
-                Serial.println("Step->" + String(i));
-                Serial.println("CT->" + String(checkTime));
-                Serial.println("PT->" + String(procTime));
                 if(checkTime < procTime){
-                    Serial.println("Time");
                     if(String((const char*)effectData["la"][l][i]["ty"]) == "st"){
-                        Serial.println("st");
                         //Start build Pattern
                             for (size_t p = 0; p < effectData["la"][l][i]["da"].length(); p++){
-                                Serial.println("Ef->" + String(p));
                                 if(String((const char*)effectData["la"][l][i]["da"][p]["ty"]) == "oc"){
-                                    Serial.println("onecolor");
                                     uint8_t red, green, blue;
                                     HsvToRgb(effectData["la"][l][i]["da"][p]["co"], red, green, blue);
                                     int start = map((int)effectData["la"][l][i]["da"][p]["st"], 0, 1000, 0, ledCount);
