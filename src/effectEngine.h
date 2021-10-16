@@ -31,7 +31,6 @@
 			callbackFunctionRGB updateFunctionRGB;
 			int effectBrightness = 100;
 			int ledCount = 60;
-            int effectDelay = 50;
             bool effect = false;
 			long startTime[] = {};
 		
