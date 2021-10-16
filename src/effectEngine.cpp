@@ -29,7 +29,6 @@ void EffectEngine::setData(String data){
         JSONVar newData = JSON.parse(data);
         effect = false;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
-            Serial.println("patt");
             effectData = newData;
             uint8_t color[3] = {0, 0, 0};
             HsvToRgb(effectData, color[0], color[1], color[2]); 
@@ -156,6 +155,7 @@ void EffectEngine::tick(){
 
         for (size_t i = 0; i < effectData["la"].length(); i++){
             JSONVar layer = buildLayer(effectData["la"][i], i);
+            Serial.println(JSON.stringify(layer));
             returnData = mergePattern(returnData, layer);
         }
 
