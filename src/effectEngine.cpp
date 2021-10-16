@@ -15,7 +15,7 @@ void EffectEngine::setData(String data){
         data.remove(0, 1);
         JSONVar newData = JSON.parse(data);
         effect = true;
-        if(!JSON.stringify(newData).equals(JSON.stringify(effectData))){
+        if(JSON.stringify(newData) != JSON.stringify(effectData)){
             Serial.println("effect");
             Serial.println(data);
             effectData = newData;
@@ -28,10 +28,8 @@ void EffectEngine::setData(String data){
     else{
         JSONVar newData = JSON.parse(data);
         effect = false;
-        if(!JSON.stringify(newData).equals(JSON.stringify(effectData))){
-            Serial.println(JSON.stringify(newData));
-    Serial.println(JSON.stringify(effectData));
-            //Serial.println("patt");
+        if(JSON.stringify(newData) != JSON.stringify(effectData)){
+            Serial.println("patt");
             JSONVar returnData = JSON.parse("[]");
             effectData = newData;
             uint8_t color[3] = {0, 0, 0};
@@ -49,11 +47,11 @@ void EffectEngine::setData(String data){
                 returnData[i][0] = color[0];
                 returnData[i][1] = color[1];
                 returnData[i][2] = color[2];
-                //redarray[i] = color[0];
-                //greenarray[i] = color[1];
-                //bluearray[i] = color[2];
+                redarray[i] = color[0];
+                greenarray[i] = color[1];
+                bluearray[i] = color[2];
             }
-            //if(updateFunction) updateFunction();
+            if(updateFunctionRGB) updateFunctionRGB(redarray, greenarray, bluearray);
         }
     }
 }
@@ -189,10 +187,10 @@ void EffectEngine::tick(){
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);*/
 
-        //if(updateFunction)  {updateFunction();}
+        //if(updateFunctionRGB)  {updateFunctionRGB();}
     }
 }
 
 void EffectEngine::setListenerRGB(callbackFunctionRGB function){
-    updateFunction = function;
+    updateFunctionRGB = function;
 }
