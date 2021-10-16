@@ -83,7 +83,7 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
             HsvToRgb(data[p]["co"], red, green, blue);
             int start = map((int)data[p]["st"], 0, 1000, 0, ledCount);
             for (size_t e = 0; e < map((int)data[p]["en"], 0, 1000, 0, ledCount) - start; e++){
-                reddata[e + start] = red; //intergate brightness
+                reddata[e + start] = red; 
                 greendata[e + start] = green;
                 bluedata[e + start] = blue;
             }
@@ -96,7 +96,7 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
             int start = map((int)data[p]["st"], 0, 1000, 0, ledCount);
             int count = end - start;
             for (size_t e = 0; e < count; e++){
-                reddata[e + start] = map(e, 0, count, red1, red2); //intergate brightness
+                reddata[e + start] = map(e, 0, count, red1, red2);
                 greendata[e + start] = map(e, 0, count, green1, green2);
                 bluedata[e + start] = map(e, 0, count, blue1, blue2);
             }
