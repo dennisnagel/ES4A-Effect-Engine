@@ -25,9 +25,6 @@
 	
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
-			void buildPattern(JSONVar data, uint8_t &reddata[], uint8_t &greendata[], uint8_t &bluedata[]);
-			void buildLayer(JSONVar data, int index, , uint8_t &reddata[], uint8_t &greendata[], uint8_t &bluedata[]);
-			JSONVar mergePattern(JSONVar data1, JSONVar data2);
 
 			JSONVar effectData;
 			callbackFunctionRGB updateFunctionRGB;
