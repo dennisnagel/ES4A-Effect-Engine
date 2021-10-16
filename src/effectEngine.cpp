@@ -50,6 +50,12 @@ void EffectEngine::setData(String data){
 
 void EffectEngine::setBrightness(int brightness){
     effectBrightness = brightness;
+    if(effectBrightness < 0){
+        effectBrightness = 0;
+    }
+    if(effectBrightness > 100){
+        effectBrightness = 100;
+    }
 }
 
 void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
@@ -235,6 +241,12 @@ void EffectEngine::tick(){
             }
             //build LayverEnd
 
+        }
+
+        for (size_t i = 0; i < ledCount; i++){
+            reddata[i] = (reddata[i] * effectBrightness) / 100;
+            greendata[i] = (greendata[i] * effectBrightness) / 100;
+            bluedata[i] = (bluedata[i] * effectBrightness) / 100;
         }
 
         if(updateFunctionRGB) updateFunctionRGB(reddata,greendata,bluedata);
