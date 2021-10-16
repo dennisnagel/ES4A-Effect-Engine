@@ -87,10 +87,6 @@ void EffectEngine::buildPattern(JSONVar data){
 
 void EffectEngine::tick(){
     if(effect){
-        reddata = {};
-        greendata = {};
-        bluedata = {};
-
         for (size_t i = 0; i < ledCount; i++){
             reddata[i] = 0;
             greendata[i] = 0;
