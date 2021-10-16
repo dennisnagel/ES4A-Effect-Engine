@@ -145,13 +145,14 @@ JSONVar EffectEngine::buildLayer(JSONVar data, int index){
 
 void EffectEngine::tick(){
     if(effect){
-        JSONVar returnData = JSON.parse("[]");
+        uint8_t reddata[ledCount] = {};
+        uint8_t greendata[ledCount] = {};
+        uint8_t bluedata[ledCount] = {};
 
         for (size_t i = 0; i < ledCount; i++){
-            returnData[i] = JSON.parse("[]");
-            returnData[i][0] = 0;
-            returnData[i][1] = 0;
-            returnData[i][2] = 0;
+            reddata[i] = 0;
+            greendata[i] = 0;
+            bluedata[i] = 0;
         }
 
         /*for (size_t i = 0; i < effectData["la"].length(); i++){
@@ -159,10 +160,6 @@ void EffectEngine::tick(){
             //Serial.println(JSON.stringify(layer));
             returnData = mergePattern(returnData, layer);
         }*/
-
-        uint8_t reddata[ledCount] = {};
-        uint8_t greendata[ledCount] = {};
-        uint8_t bluedata[ledCount] = {};
 
         for (size_t i = 0; i < ledCount; i++){
             reddata[i] = (int)returnData[i][0];
