@@ -56,6 +56,24 @@ void EffectEngine::setBrightness(int brightness){
     if(effectBrightness > 100){
         effectBrightness = 100;
     }
+    if(!effect){
+        uint8_t color[3] = {0, 0, 0};
+        HsvToRgb(effectData, color[0], color[1], color[2]); 
+        uint8_t redarray[ledCount] = {};
+        uint8_t greenarray[ledCount] = {};
+        uint8_t bluearray[ledCount] = {};
+        
+        color[0] = (color[0] * effectBrightness) / 100;
+        color[1] = (color[1] * effectBrightness) / 100;
+        color[2] = (color[2] * effectBrightness) / 100;
+        
+        for (size_t i = 0; i < ledCount; i++){
+            redarray[i] = color[0];
+            greenarray[i] = color[1];
+            bluearray[i] = color[2];
+        }
+        if(updateFunctionRGB) updateFunctionRGB(redarray, greenarray, bluearray);
+    }
 }
 
 void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
