@@ -349,7 +349,7 @@ void EffectEngine::tick(){
             bluedata[i] = (bluedata[i] * effectBrightness) / 100;
         }*/
 
-        if(updateFunctionRGB) updateFunctionRGB(0,reddata,greendata,bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberwhitedata);
+        if(updateFunctionRGB) updateFunctionRGB(0,reddata,greendata,bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
     }
 }
 
