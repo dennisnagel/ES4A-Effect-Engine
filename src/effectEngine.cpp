@@ -116,7 +116,7 @@ void EffectEngine::ColorToRgbwwwa(JSONVar data, uint8_t &r, uint8_t &g, uint8_t 
     }
     if(data.hasOwnProperty("r") || data.hasOwnProperty("g") || data.hasOwnProperty("b") || data.hasOwnProperty("ww") || data.hasOwnProperty("nw") || data.hasOwnProperty("cw") || data.hasOwnProperty("a")){
         if(data.hasOwnProperty("r"))
-            r = data["r"];
+            r = (int)data["r"];
     }
     /*r = red;
     g = green;
