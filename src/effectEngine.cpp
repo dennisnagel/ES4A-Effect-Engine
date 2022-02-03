@@ -15,7 +15,7 @@ EffectEngine::EffectEngine(int leds, int width){
     _width = width;
 }
 
-EffectEngine::setColorMode(bool r, bool g, bool b, bool ww, bool nw, bool cw, bool a){
+void EffectEngine::setColorMode(bool r, bool g, bool b, bool ww, bool nw, bool cw, bool a){
     _rActvie = r;
 	_gActvie = g;
 	_bActvie = b;
