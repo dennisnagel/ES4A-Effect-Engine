@@ -28,7 +28,7 @@
 		private:
 			void HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b);
 			void ColorToRgbwwwa(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b, uint8_t &ww, uint8_t &nw, uint8_t &cw, uint8_t &a);
-			void buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[]);
+			void buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[],  uint8_t warmwhitedata[], uint8_t normalwhitedata[], uint8_t coldwhitedata[], uint8_t amberdata[]);
 
 			JSONVar effectData;
 			callbackFunctionRGB updateFunctionRGB;
