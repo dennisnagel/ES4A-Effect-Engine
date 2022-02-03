@@ -139,7 +139,7 @@ void EffectEngine::ColorToRgbwwwa(JSONVar data, uint8_t &r, uint8_t &g, uint8_t 
 }
 
 void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[],  uint8_t warmwhitedata[], uint8_t normalwhitedata[], uint8_t coldwhitedata[], uint8_t amberdata[]){
-    for (size_t p = 0; p < data.lengtAh(); p++){
+    for (size_t p = 0; p < data.length(); p++){
         if(String((const char*)data[p]["ty"]) == "oc"){
             uint8_t red, green, blue, warmwhite, normalwhite, coldwhite, amber;
             ColorToRgbwwwa(data[p]["co"], red, green, blue, warmwhite, normalwhite, coldwhite, amber);
