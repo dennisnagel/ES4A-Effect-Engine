@@ -306,6 +306,10 @@ void EffectEngine::tick(){
                                 reddata[e] = map(unit, 0, 100000, reddatao[e], reddatan[e]);
                                 greendata[e] = map(unit, 0, 100000, greendatao[e], greendatan[e]);
                                 bluedata[e] = map(unit, 0, 100000, bluedatao[e], bluedatan[e]);
+                                warmwhitedata[e] = map(unit, 0, 100000, warmwhitedatao[e], warmwhitedatan[e]);
+                                normalwhitedata[e] = map(unit, 0, 100000, normalwhitedatao[e], normalwhitedatan[e]);
+                                coldwhitedata[e] = map(unit, 0, 100000, coldwhitedatao[e], coldwhitedatan[e]);
+                                amberdata[e] = map(unit, 0, 100000, amberdatao[e], amberdatan[e]);
                             }
                         }
                         
@@ -355,6 +359,10 @@ void EffectEngine::tick(){
                                 reddata[pos] = reddatan[e];
                                 greendata[pos] = greendatan[e];
                                 bluedata[pos] = bluedatan[e];
+                                warmwhitedata[pos] = warmwhitedatan[e];
+                                normalwhitedata[pos] = normalwhitedatan[e];
+                                coldwhitedata[pos] = coldwhitedatan[e];
+                                amberdata[pos] = amberdatan[e];
                             }
                         }                        
                     }
