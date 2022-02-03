@@ -108,41 +108,58 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
 void EffectEngine::ColorToRgbwwwa(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b, uint8_t &ww, uint8_t &nw, uint8_t &cw, uint8_t &a){
     if(data.hasOwnProperty("h") && data.hasOwnProperty("s") && data.hasOwnProperty("v")){
         HsvToRgb(data, r, g, b);
+        ww = 0;
+        nw = 0;
+        cw = 0;
+        a = 0;
     }
     if(data.hasOwnProperty("r") || data.hasOwnProperty("g") || data.hasOwnProperty("b") || data.hasOwnProperty("ww") || data.hasOwnProperty("nw") || data.hasOwnProperty("cw") || data.hasOwnProperty("a")){
+        r = 0;
+        g = 0;
+        b = 0;
+        ww = 0;
+        nw = 0;
+        cw = 0;
+        a = 0;
         if(data.hasOwnProperty("r"))
             r = (int)data["r"];
         if(data.hasOwnProperty("g"))
-            r = (int)data["g"];
+            g = (int)data["g"];
         if(data.hasOwnProperty("b"))
-            r = (int)data["b"];
+            b = (int)data["b"];
         if(data.hasOwnProperty("ww"))
-            r = (int)data["ww"];
+            ww = (int)data["ww"];
         if(data.hasOwnProperty("nw"))
-            r = (int)data["nw"];
+            nw = (int)data["nw"];
         if(data.hasOwnProperty("cw"))
-            r = (int)data["cw"];
+            cw = (int)data["cw"];
         if(data.hasOwnProperty("a"))
-            r = (int)data["a"];
+            a = (int)data["a"];
     }
 }
 
-void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[]){
-    for (size_t p = 0; p < data.length(); p++){
+void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[],  uint8_t warmwhitedata[], uint8_t normalwhitedata[], uint8_t coldwhitedata[], uint8_t amberdata[]){
+    for (size_t p = 0; p < data.lengtAh(); p++){
         if(String((const char*)data[p]["ty"]) == "oc"){
-            uint8_t red, green, blue;
-            HsvToRgb(data[p]["co"], red, green, blue);
+            uint8_t red, green, blue, warmwhite, normalwhite, coldwhite, amber;
+            ColorToRgbwwwa(data[p]["co"], red, green, blue, warmwhite, normalwhite, coldwhite, amber);
             int start = map((int)data[p]["st"], 0, 1000, 0, ledCount);
             for (size_t e = 0; e < map((int)data[p]["en"], 0, 1000, 0, ledCount) - start; e++){
                 reddata[e + start] = red; 
                 greendata[e + start] = green;
                 bluedata[e + start] = blue;
+                warmwhitedata[e + start] = warmwhite; 
+                normalwhitedata[e + start] = normalwhite;
+                coldwhitedata[e + start] = coldwhite;
+                amberdata[e + start] = amber; 
             }
         }
         if(String((const char*)data[p]["ty"]) == "fa"){
-            uint8_t red1, green1, blue1, red2, green2, blue2;
-            HsvToRgb(data[p]["cs"], red1, green1, blue1);
-            HsvToRgb(data[p]["ce"], red2, green2, blue2);
+            uint8_t red1, green1, blue1, warmwhite1, normalwhite1, coldwhite1, amber1, red2, green2, blue2, warmwhite2, normalwhite2, coldwhite2, amber2;
+            ColorToRgbwwwa(data[p]["cs"], red1, green1, blue1, warmwhite1, normalwhite1, coldwhite1, amber1);
+            ColorToRgbwwwa(data[p]["ce"], red2, green2, blue2, warmwhite2, normalwhite2, coldwhite2, amber2);
+            //HsvToRgb(data[p]["cs"], red1, green1, blue1);
+            //HsvToRgb(data[p]["ce"], red2, green2, blue2);
             int end = map((int)data[p]["en"], 0, 1000, 0, ledCount);
             int start = map((int)data[p]["st"], 0, 1000, 0, ledCount);
             int count = end - start;
@@ -150,6 +167,10 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
                 reddata[e + start] = map(e, 0, count, red1, red2);
                 greendata[e + start] = map(e, 0, count, green1, green2);
                 bluedata[e + start] = map(e, 0, count, blue1, blue2);
+                warmwhitedata[e + start] = map(e, 0, count, warmwhite1, warmwhite2);
+                normalwhitedata[e + start] = map(e, 0, count, normalwhite1, normalwhite2);
+                coldwhitedata[e + start] = map(e, 0, count, coldwhite1, coldwhite2);
+                amberdata[e + start] = map(e, 0, count, amber1, amber2);
             }
         }
     }
@@ -186,17 +207,29 @@ void EffectEngine::tick(){
                         uint8_t reddatap[ledCount] = {};
                         uint8_t greendatap[ledCount] = {};
                         uint8_t bluedatap[ledCount] = {};
+                        uint8_t warmwhitedatap[ledCount] = {};
+                        uint8_t normalwhitedatap[ledCount] = {};
+                        uint8_t coldwhitedatap[ledCount] = {};
+                        uint8_t amberdatap[ledCount] = {};
                         for (size_t e = 0; e < ledCount; e++){
                             reddatap[i] = NULL;
                             greendatap[i] = NULL;
                             bluedatap[i] = NULL;
+                            warmwhitedatap[i] = NULL;
+                            normalwhitedatap[i] = NULL;
+                            coldwhitedatap[i] = NULL;
+                            amberdatap[i] = NULL;
                         }
-                        buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap);
+                        buildPattern(effectData["la"][l][i]["da"], reddatap, greendatap, bluedatap, warmwhitedatap, normalwhitedatap, coldwhitedatap, amberdatap);
                         for (size_t e = 0; e < ledCount; e++){
                             if(reddatap[e] >= 0){
                                 reddata[e] = reddatap[e];
                                 greendata[e] = greendatap[e];
                                 bluedata[e] = bluedatap[e];
+                                warmwhitedata[e] = warmwhitedatap[e];
+                                normalwhitedata[e] = normalwhitedatap[e];
+                                coldwhitedata[e] = coldwhitedatap[e];
+                                amberdata[e] = amberdatap[e];
                             }
                         }
                     }
@@ -209,30 +242,56 @@ void EffectEngine::tick(){
                         uint8_t reddatao[ledCount] = {};
                         uint8_t greendatao[ledCount] = {};
                         uint8_t bluedatao[ledCount] = {};
+                        uint8_t warmwhitedatao[ledCount] = {};
+                        uint8_t normalwhitedatao[ledCount] = {};
+                        uint8_t coldwhitedatao[ledCount] = {};
+                        uint8_t amberdatao[ledCount] = {};
+
                         uint8_t reddatan[ledCount] = {};
                         uint8_t greendatan[ledCount] = {};
                         uint8_t bluedatan[ledCount] = {};
+                        uint8_t warmwhitedatan[ledCount] = {};
+                        uint8_t normalwhitedatan[ledCount] = {};
+                        uint8_t coldwhitedatan[ledCount] = {};
+                        uint8_t amberdatan[ledCount] = {};
                         for (size_t e = 0; e < ledCount; e++){
-                            reddatao[i] = NULL;
-                            greendatao[i] = NULL;
-                            bluedatao[i] = NULL;
-                            reddatan[i] = NULL;
-                            greendatan[i] = NULL;
-                            bluedatan[i] = NULL;
+                            reddatao[e] = NULL;
+                            greendatao[e] = NULL;
+                            bluedatao[e] = NULL;
+                            warmwhitedatao[e] = NULL;
+                            normalwhitedatao[e] = NULL;
+                            coldwhitedatao[e] = NULL;
+                            amberdatao[e] = NULL;
+
+                            reddatan[e] = NULL;
+                            greendatan[e] = NULL;
+                            bluedatan[e] = NULL;
+                            warmwhitedatan[e] = NULL;
+                            normalwhitedatan[e] = NULL;
+                            coldwhitedatan[e] = NULL;
+                            amberdatan[e] = NULL;
                         }
-                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan);
-                        buildPattern(effectData["la"][l][oldval]["da"], reddatao, greendatao, bluedatao);
+                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan, warmwhitedatan, normalwhitedatan, coldwhitedatan, amberdatan);
+                        buildPattern(effectData["la"][l][oldval]["da"], reddatao, greendatao, bluedatao, warmwhitedatao, normalwhitedatao, coldwhitedatao, amberdatao);
                         for (size_t e = 0; e < ledCount; e++){
                             if(reddatan[e] >= 0 || reddatao[e] >= 0){
                                 if(!(reddatan[e] >= 0)){
                                     reddatan[e] = 0;
                                     greendatan[e] = 0;
                                     bluedatan[e] = 0;
+                                    warmwhitedatan[e] = 0;
+                                    normalwhitedatan[e] = 0;
+                                    coldwhitedatan[e] = 0;
+                                    amberdatan[e] = 0;
                                 }
                                 if(!(reddatao[e] >= 0)){
                                     reddatao[e] = 0;
                                     greendatao[e] = 0;
                                     bluedatao[e] = 0;
+                                    warmwhitedatao[e] = 0;
+                                    normalwhitedatao[e] = 0;
+                                    coldwhitedatao[e] = 0;
+                                    amberdatao[e] = 0;
                                 }
 
                                 int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["du"], 0, 100000);
@@ -259,12 +318,20 @@ void EffectEngine::tick(){
                         uint8_t reddatan[ledCount] = {};
                         uint8_t greendatan[ledCount] = {};
                         uint8_t bluedatan[ledCount] = {};
+                        uint8_t warmwhitedatan[ledCount] = {};
+                        uint8_t normalwhitedatan[ledCount] = {};
+                        uint8_t coldwhitedatan[ledCount] = {};
+                        uint8_t amberdatan[ledCount] = {};
                         for (size_t e = 0; e < ledCount; e++){
                             reddatan[i] = NULL;
                             greendatan[i] = NULL;
                             bluedatan[i] = NULL;
+                            warmwhitedatan[i] = NULL;
+                            normalwhitedatan[i] = NULL;
+                            coldwhitedatan[i] = NULL;
+                            amberdatan[i] = NULL;
                         }
-                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan);
+                        buildPattern(effectData["la"][l][i]["da"], reddatan, greendatan, bluedatan, warmwhitedatan, normalwhitedatan, coldwhitedatan, amberdatan);
                         for (size_t e = 0; e < ledCount; e++){
                             if(reddatan[e] >= 0){
                                 int unit = map(procTime, checkTime, checkTime + (long)effectData["la"][l][i]["du"], 0, 100000);
