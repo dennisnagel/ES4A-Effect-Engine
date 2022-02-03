@@ -157,63 +157,6 @@ void EffectEngine::tick(){
             amberdata[i] = 0;
         }
 
-        if(_rActive){
-            uint8_t reddata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                reddata[i] = 0;
-            }
-        } else{
-            uint8_t reddata[0] = {};
-        }
-        if(_gActive){
-            uint8_t greendata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                greendata[i] = 0;
-            }
-        } else{
-            uint8_t greendata[0] = {};
-        }
-        if(_bActive){
-            uint8_t bluedata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                bluedata[i] = 0;
-            }
-        } else{
-            uint8_t bluedata[0] = {};
-        }
-        if(_wwActive){
-            uint8_t warmwhitedata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                warmwhitedata[i] = 0;
-            }
-        } else{
-            uint8_t warmwhitedata[0] = {};
-        }
-        if(_nwActive){
-            uint8_t normalwhitedata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                normalwhitedata[i] = 0;
-            }
-        } else{
-            uint8_t normalwhitedata[0] = {};
-        }
-        if(_cwActive){
-            uint8_t coldwhitedata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                coldwhitedata[i] = 0;
-            }
-        } else{
-            uint8_t coldwhitedata[0] = {};
-        }
-        if(_aActive){
-            uint8_t amberdata[ledCount] = {};
-            for (size_t i = 0; i < ledCount; i++){
-                amberdata[i] = 0;
-            }
-        } else{
-            uint8_t amberdata[0] = {};
-        }
-
         for (size_t l = 0; l < effectData["la"].length(); l++){
            //build Layver Start
             long procTime = millis() - startTime[l];
