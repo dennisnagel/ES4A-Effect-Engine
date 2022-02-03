@@ -92,7 +92,6 @@ void EffectEngine::setBrightness(int brightness){
 }
 
 void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
-    uint8_t red, green, blue;
     double hue, saturation, value;
 
     hue = (int)data["h"];
@@ -104,27 +103,28 @@ void EffectEngine::HsvToRgb(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b){
     value = value / 1000;
 
     ColorConverter::HsvToRgb(hue, saturation, value, r, g, b);
-    r = red;
-    g = green;
-    b = blue;
 }
 
 void EffectEngine::ColorToRgbwwwa(JSONVar data, uint8_t &r, uint8_t &g, uint8_t &b, uint8_t &ww, uint8_t &nw, uint8_t &cw, uint8_t &a){
-    uint8_t red, green, blue, warmwhite, normalwhite, coldwhite, amber;
     if(data.hasOwnProperty("h") && data.hasOwnProperty("s") && data.hasOwnProperty("v")){
         HsvToRgb(data, r, g, b);
     }
     if(data.hasOwnProperty("r") || data.hasOwnProperty("g") || data.hasOwnProperty("b") || data.hasOwnProperty("ww") || data.hasOwnProperty("nw") || data.hasOwnProperty("cw") || data.hasOwnProperty("a")){
         if(data.hasOwnProperty("r"))
             r = (int)data["r"];
+        if(data.hasOwnProperty("g"))
+            r = (int)data["g"];
+        if(data.hasOwnProperty("b"))
+            r = (int)data["b"];
+        if(data.hasOwnProperty("ww"))
+            r = (int)data["ww"];
+        if(data.hasOwnProperty("nw"))
+            r = (int)data["nw"];
+        if(data.hasOwnProperty("cw"))
+            r = (int)data["cw"];
+        if(data.hasOwnProperty("a"))
+            r = (int)data["a"];
     }
-    /*r = red;
-    g = green;
-    b = blue;
-    ww = warmwhite;
-    nw = green;
-    cw = normalwhite;
-    a = amber;*/
 }
 
 void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greendata[], uint8_t bluedata[]){
