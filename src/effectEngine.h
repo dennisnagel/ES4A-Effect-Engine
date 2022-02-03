@@ -37,7 +37,7 @@
 			bool _wwActvie = false;
 			bool _nwActvie = false;
 			bool _cwActvie = false;
-			bool _aActvie = false;
+			bool _cwActvie = false;
 			int effectBrightness = 100;
 			int ledCount = 60;
 			int _width = 1;
