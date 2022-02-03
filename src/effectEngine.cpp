@@ -58,7 +58,7 @@ void EffectEngine::setData(String data){
                 greenarray[i] = color[1];
                 bluearray[i] = color[2];
             }
-            if(updateFunctionRGB) updateFunctionRGB(redarray, greenarray, bluearray);
+            if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, {}, {}, {}, {});
         }
     }
 }
@@ -87,7 +87,7 @@ void EffectEngine::setBrightness(int brightness){
             greenarray[i] = color[1];
             bluearray[i] = color[2];
         }
-        if(updateFunctionRGB) updateFunctionRGB(redarray, greenarray, bluearray);
+        if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, {}, {}, {}, {});
     }
 }
 
