@@ -23,6 +23,7 @@ void EffectEngine::setColorMode(bool r, bool g, bool b, bool ww, bool nw, bool c
 	_nwActvie = nw;
 	_cwActvie = cw;
 	_aActvie = a;
+}
 
 void EffectEngine::setData(String data){
     if(data.charAt(0) == 'f'){
