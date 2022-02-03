@@ -44,7 +44,7 @@ void EffectEngine::setData(String data){
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             effectData = newData;
             uint8_t color[7] = {0, 0, 0, 0, 0, 0, 0};
-            ColorToRgbwwwa(JSONVar data, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
+            ColorToRgbwwwa(effectData, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
             uint8_t redarray[ledCount] = {};
             uint8_t greenarray[ledCount] = {};
             uint8_t bluearray[ledCount] = {};
@@ -85,7 +85,7 @@ void EffectEngine::setBrightness(int brightness){
     }
     if(!effect){
         uint8_t color[7] = {0, 0, 0, 0, 0, 0, 0};
-        ColorToRgbwwwa(JSONVar data, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
+        ColorToRgbwwwa(effectData, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
