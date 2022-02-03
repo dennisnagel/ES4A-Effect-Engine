@@ -139,6 +139,24 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
 
 void EffectEngine::tick(){
     if(effect){
+        uint8_t reddata[ledCount] = {};
+        uint8_t greendata[ledCount] = {};
+        uint8_t bluedata[ledCount] = {};
+        uint8_t warmwhitedata[ledCount] = {};
+        uint8_t normalwhitedata[ledCount] = {};
+        uint8_t coldwhitedata[ledCount] = {};
+        uint8_t amberdata[ledCount] = {};
+
+        for (size_t i = 0; i < ledCount; i++){
+            reddata[i] = 0;
+            greendata[i] = 0;
+            bluedata[i] = 0;
+            warmwhitedata[i] = 0;
+            normalwhitedata[i] = 0;
+            coldwhitedata[i] = 0;
+            amberdata[i] = 0;
+        }
+
         if(_rActive){
             uint8_t reddata[ledCount] = {};
             for (size_t i = 0; i < ledCount; i++){
