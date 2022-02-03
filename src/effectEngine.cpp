@@ -43,22 +43,34 @@ void EffectEngine::setData(String data){
         effect = false;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             effectData = newData;
-            uint8_t color[3] = {0, 0, 0};
-            HsvToRgb(effectData, color[0], color[1], color[2]); 
+            uint8_t color[7] = {0, 0, 0, 0, 0, 0, 0};
+            ColorToRgbwwwa(JSONVar data, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
             uint8_t redarray[ledCount] = {};
             uint8_t greenarray[ledCount] = {};
             uint8_t bluearray[ledCount] = {};
+            uint8_t warmwhitearray[ledCount] = {};
+            uint8_t normalwhitearray[ledCount] = {};
+            uint8_t coldwhitearray[ledCount] = {};
+            uint8_t amberarray[ledCount] = {};
 
             color[0] = (color[0] * effectBrightness) / 100;
             color[1] = (color[1] * effectBrightness) / 100;
             color[2] = (color[2] * effectBrightness) / 100;
+            color[3] = (color[3] * effectBrightness) / 100;
+            color[4] = (color[4] * effectBrightness) / 100;
+            color[5] = (color[5] * effectBrightness) / 100;
+            color[6] = (color[6] * effectBrightness) / 100;
 
             for (size_t i = 0; i < ledCount; i++){
                 redarray[i] = color[0];
                 greenarray[i] = color[1];
                 bluearray[i] = color[2];
+                warmwhitearray[i] = color[3];
+                normalwhitearray[i] = color[4];
+                coldwhitearray[i] = color[5];
+                amberarray[i] = color[6];
             }
-            if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, {}, {}, {}, {});
+            if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
         }
     }
 }
@@ -72,22 +84,34 @@ void EffectEngine::setBrightness(int brightness){
         effectBrightness = 100;
     }
     if(!effect){
-        uint8_t color[3] = {0, 0, 0};
-        HsvToRgb(effectData, color[0], color[1], color[2]); 
+        uint8_t color[7] = {0, 0, 0, 0, 0, 0, 0};
+        ColorToRgbwwwa(JSONVar data, color[0], color[1], color[2], color[3], color[4], color[5], color[6]);
         uint8_t redarray[ledCount] = {};
         uint8_t greenarray[ledCount] = {};
         uint8_t bluearray[ledCount] = {};
+        uint8_t warmwhitearray[ledCount] = {};
+        uint8_t normalwhitearray[ledCount] = {};
+        uint8_t coldwhitearray[ledCount] = {};
+        uint8_t amberarray[ledCount] = {};
         
         color[0] = (color[0] * effectBrightness) / 100;
         color[1] = (color[1] * effectBrightness) / 100;
         color[2] = (color[2] * effectBrightness) / 100;
+        color[3] = (color[3] * effectBrightness) / 100;
+        color[4] = (color[4] * effectBrightness) / 100;
+        color[5] = (color[5] * effectBrightness) / 100;
+        color[6] = (color[6] * effectBrightness) / 100;
         
         for (size_t i = 0; i < ledCount; i++){
             redarray[i] = color[0];
             greenarray[i] = color[1];
             bluearray[i] = color[2];
+            warmwhitearray[i] = color[3];
+            normalwhitearray[i] = color[4];
+            coldwhitearray[i] = color[5];
+            amberarray[i] = color[6];
         }
-        if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, {}, {}, {}, {});
+        if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
     }
 }
 
