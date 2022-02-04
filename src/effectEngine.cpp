@@ -167,7 +167,7 @@ void EffectEngine::buildPattern(JSONVar data, uint8_t reddata[], uint8_t greenda
         bool build = false;
         if(data[p].hasOwnProperty("w")){
             for(int index = 0; index < data[p]["w"].length(); index++){
-                if(data[p]["w"][index] == width){
+                if((int)data[p]["w"][index] == width){
                     build = true;
                 }
             }
