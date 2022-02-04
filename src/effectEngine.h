@@ -2,7 +2,7 @@
 	#define EffectEngine_h
 
 	extern "C" {
-		typedef void (*callbackFunctionRGB)(int pos, uint8_t r[], uint8_t g[], uint8_t b[], uint8_t ww[], uint8_t nw[], uint8_t cw[], uint8_t a[]); //rgbwwa
+		typedef void (*callbackFunctionRGB)(int8_t pos, uint8_t r[], uint8_t g[], uint8_t b[], uint8_t ww[], uint8_t nw[], uint8_t cw[], uint8_t a[]); //rgbwwa
 	}
 
 	#if defined(ARDUINO) && ARDUINO >= 100
