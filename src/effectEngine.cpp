@@ -430,6 +430,7 @@ void EffectEngine::tick(){
         bool swt = true;
         for(int i = 0; i < _width; i++){
             runWidth(currentWidth);
+            Serial.println(currentWidth);
             if(swt){
                 currentWidth = abs(currentWidth) + 1;
                 swt = false;
