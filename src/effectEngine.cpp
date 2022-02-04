@@ -70,7 +70,19 @@ void EffectEngine::setData(String data){
                 coldwhitearray[i] = color[5];
                 amberarray[i] = color[6];
             }
-            if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
+            int currentWidth = 0;
+            bool swt = true;
+            for(int i = 0; i < _width; i++){
+                if(updateFunctionRGB) updateFunctionRGB(currentWidth, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
+                if(swt){
+                    currentWidth = abs(currentWidth) + 1;
+                    swt = false;
+                } else{
+                    currentWidth = currentWidth * -1;
+                    swt = true;
+                }
+            }
+
         }
     }
 }
@@ -111,7 +123,18 @@ void EffectEngine::setBrightness(int brightness){
             coldwhitearray[i] = color[5];
             amberarray[i] = color[6];
         }
-        if(updateFunctionRGB) updateFunctionRGB(0, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
+        int currentWidth = 0;
+        bool swt = true;
+        for(int i = 0; i < _width; i++){
+            if(updateFunctionRGB) updateFunctionRGB(currentWidth, redarray, greenarray, bluearray, warmwhitearray, normalwhitearray, coldwhitearray, amberarray);
+            if(swt){
+                currentWidth = abs(currentWidth) + 1;
+                swt = false;
+            } else{
+                currentWidth = currentWidth * -1;
+                swt = true;
+            }
+        }
     }
 }
 
@@ -413,13 +436,15 @@ void EffectEngine::runWidth(int width){
 
     }
 
-        /*for (size_t i = 0; i < ledCount; i++){
-            if(_rActive)
-            reddata[i] = (reddata[i] * effectBrightness) / 100;
-            if(_gActive)
-            greendata[i] = (greendata[i] * effectBrightness) / 100;
-            bluedata[i] = (bluedata[i] * effectBrightness) / 100;
-        }*/
+    for (size_t i = 0; i < ledCount; i++){
+        reddata[i] = (reddata[i] * effectBrightness) / 100;
+        greendata[i] = (greendata[i] * effectBrightness) / 100;
+        bluedata[i] = (bluedata[i] * effectBrightness) / 100;
+        warmwhitedata[i] = (warmwhitedata[i] * effectBrightness) / 100;
+        normalwhitedata[i] = (normalwhitedata[i] * effectBrightness) / 100;
+        coldwhitedata[i] = (coldwhitedata[i] * effectBrightness) / 100;
+        amberdata[i] = (amberdata[i] * effectBrightness) / 100;
+    }
 
     if(updateFunctionRGB) updateFunctionRGB(width, reddata, greendata, bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
 }
@@ -430,7 +455,6 @@ void EffectEngine::tick(){
         bool swt = true;
         for(int i = 0; i < _width; i++){
             runWidth(currentWidth);
-            Serial.println(currentWidth);
             if(swt){
                 currentWidth = abs(currentWidth) + 1;
                 swt = false;
