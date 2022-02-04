@@ -430,6 +430,7 @@ void EffectEngine::tick(){
         for(int i = 0; i < _width; i++){
             runWidth(currentWidth);
             currentWidth = (currentWidth + 1) * -1;
+            Serial.println(String(currentWidth));
         }
     }
 }
