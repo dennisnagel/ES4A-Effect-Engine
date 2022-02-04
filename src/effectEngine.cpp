@@ -427,10 +427,16 @@ void EffectEngine::runWidth(int width){
 void EffectEngine::tick(){
     if(effect){
         int currentWidth = 0;
+        bool swt = true;
         for(int i = 0; i < _width; i++){
+            if(swt){
+                currentWidth = abs(currentWidth) + 1;
+                swt = false;
+            } else{
+                currentWidth = currentWidth * -1;
+                swt = true;
+            }
             runWidth(currentWidth);
-            currentWidth = (currentWidth + 1) * -1;
-            Serial.println(String(currentWidth));
         }
     }
 }
