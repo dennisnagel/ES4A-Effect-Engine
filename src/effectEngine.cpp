@@ -429,6 +429,7 @@ void EffectEngine::tick(){
         int currentWidth = 0;
         bool swt = true;
         for(int i = 0; i < _width; i++){
+            runWidth(currentWidth);
             if(swt){
                 currentWidth = abs(currentWidth) + 1;
                 swt = false;
@@ -436,7 +437,6 @@ void EffectEngine::tick(){
                 currentWidth = currentWidth * -1;
                 swt = true;
             }
-            runWidth(currentWidth);
         }
     }
 }
