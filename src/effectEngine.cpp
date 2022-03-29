@@ -473,8 +473,8 @@ void EffectEngine::tick(){
         }
     }
     if(lp){
-        int steptime = effectData["data"].length(); / (int) effectData["time"];
-        int timeago = millis() - startTime[i];
+        int steptime = effectData["data"].length() / (int) effectData["time"];
+        int timeago = millis() - startTime[0];
         int step = timeago/steptime;
         uint8_t reddata[ledCount] = {};
         uint8_t greendata[ledCount] = {};
