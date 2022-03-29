@@ -476,6 +476,8 @@ void EffectEngine::tick(){
         int steptime = effectData["data"].length() / (int) effectData["time"];
         int timeago = millis() - startTime[0];
         int step = timeago/steptime;
+        Serial.println("Step: " + step);
+        Serial.println("TAG: " + timeago);
         if(timeago > (int) effectData["time"] + 100 && step >=0 && step <= effectData["data"].length()){
             uint8_t reddata[ledCount] = {};
             uint8_t greendata[ledCount] = {};
@@ -495,11 +497,11 @@ void EffectEngine::tick(){
                 amberdata[i] = 0;
             }
 
-            for (size_t hightIndex = 0; hightIndex < effectData["data"][step].length(); hightIndex++){
-            //     reddata[hightIndex] = (int) effectData["data"][step][hightIndex][0];
-             //     greendata[hightIndex] = (int) effectData["data"][step][hightIndex][1];
-            //     bluedata[hightIndex] = (int) effectData["data"][step][hightIndex][2];
-            }
+            //for (size_t hightIndex = 0; hightIndex < effectData["data"][step].length(); hightIndex++){
+            //    reddata[hightIndex] = (int) effectData["data"][step][hightIndex][0];
+            //    greendata[hightIndex] = (int) effectData["data"][step][hightIndex][1];
+            //    bluedata[hightIndex] = (int) effectData["data"][step][hightIndex][2];
+            //}
 
             for (size_t i = 0; i < ledCount; i++){
                 reddata[i] = (reddata[i] * effectBrightness) / 100;
