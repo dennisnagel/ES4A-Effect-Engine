@@ -476,40 +476,42 @@ void EffectEngine::tick(){
         int steptime = effectData["data"].length() / (int) effectData["time"];
         int timeago = millis() - startTime[0];
         int step = timeago/steptime;
-        uint8_t reddata[ledCount] = {};
-        uint8_t greendata[ledCount] = {};
-        uint8_t bluedata[ledCount] = {};
-        uint8_t warmwhitedata[ledCount] = {};
-        uint8_t normalwhitedata[ledCount] = {};
-        uint8_t coldwhitedata[ledCount] = {};
-        uint8_t amberdata[ledCount] = {};
+        if(timeago > (int) effectData["time"] + 100){
+            uint8_t reddata[ledCount] = {};
+            uint8_t greendata[ledCount] = {};
+            uint8_t bluedata[ledCount] = {};
+            uint8_t warmwhitedata[ledCount] = {};
+            uint8_t normalwhitedata[ledCount] = {};
+            uint8_t coldwhitedata[ledCount] = {};
+            uint8_t amberdata[ledCount] = {};
 
-        for (size_t i = 0; i < ledCount; i++){
-            reddata[i] = 0;
-            greendata[i] = 0;
-            bluedata[i] = 0;
-            warmwhitedata[i] = 0;
-            normalwhitedata[i] = 0;
-            coldwhitedata[i] = 0;
-            amberdata[i] = 0;
+            for (size_t i = 0; i < ledCount; i++){
+                reddata[i] = 0;
+                greendata[i] = 0;
+                bluedata[i] = 0;
+                warmwhitedata[i] = 0;
+                normalwhitedata[i] = 0;
+                coldwhitedata[i] = 0;
+                amberdata[i] = 0;
+            }
+
+            for (size_t hightIndex = 0; hightIndex < effectData["data"][step].length(); hightIndex++){
+            //     reddata[hightIndex] = (int) effectData["data"][step][hightIndex][0];
+             //     greendata[hightIndex] = (int) effectData["data"][step][hightIndex][1];
+            //     bluedata[hightIndex] = (int) effectData["data"][step][hightIndex][2];
+            }
+
+            for (size_t i = 0; i < ledCount; i++){
+                reddata[i] = (reddata[i] * effectBrightness) / 100;
+                greendata[i] = (greendata[i] * effectBrightness) / 100;
+                bluedata[i] = (bluedata[i] * effectBrightness) / 100;
+                warmwhitedata[i] = (warmwhitedata[i] * effectBrightness) / 100;
+                normalwhitedata[i] = (normalwhitedata[i] * effectBrightness) / 100;
+                coldwhitedata[i] = (coldwhitedata[i] * effectBrightness) / 100;
+                amberdata[i] = (amberdata[i] * effectBrightness) / 100;
+            }
+            if(updateFunctionRGB) updateFunctionRGB(0, reddata, greendata, bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
         }
-
-       // for (size_t hightIndex = 0; hightIndex < effectData["data"][step].length(); hightIndex++){
-       //     reddata[hightIndex] = (int) effectData["data"][step][hightIndex][0];
-       //     greendata[hightIndex] = (int) effectData["data"][step][hightIndex][1];
-       //     bluedata[hightIndex] = (int) effectData["data"][step][hightIndex][2];
-       // }
-
-        for (size_t i = 0; i < ledCount; i++){
-            reddata[i] = (reddata[i] * effectBrightness) / 100;
-            greendata[i] = (greendata[i] * effectBrightness) / 100;
-            bluedata[i] = (bluedata[i] * effectBrightness) / 100;
-            warmwhitedata[i] = (warmwhitedata[i] * effectBrightness) / 100;
-            normalwhitedata[i] = (normalwhitedata[i] * effectBrightness) / 100;
-            coldwhitedata[i] = (coldwhitedata[i] * effectBrightness) / 100;
-            amberdata[i] = (amberdata[i] * effectBrightness) / 100;
-        }
-        if(updateFunctionRGB) updateFunctionRGB(0, reddata, greendata, bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
     }
 }
 
