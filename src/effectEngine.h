@@ -44,6 +44,7 @@
 			int ledCount = 60;
 			int _width = 1;
             bool effect = false;
+			bool lp = false;
 			long startTime[] = {};
 		
 	};
