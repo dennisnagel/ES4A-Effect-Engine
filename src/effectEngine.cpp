@@ -38,9 +38,17 @@ void EffectEngine::setData(String data){
             }
         }
     }
+    else if(data.charAt(0) == 'i'){
+        data.remove(0, 1);
+        JSONVar newData = JSON.parse(data);
+        lp = true;
+        effect = false;
+        startTime[0] = millis();
+    }
     else{
         JSONVar newData = JSON.parse(data);
         effect = false;
+        lp = false;
         if(JSON.stringify(newData) != JSON.stringify(effectData)){
             effectData = newData;
             uint8_t color[7] = {0, 0, 0, 0, 0, 0, 0};
@@ -463,6 +471,45 @@ void EffectEngine::tick(){
                 swt = true;
             }
         }
+    }
+    if(lp){
+        int steptime = effectData["data"].length(); / (int) effectData["time"];
+        int timeago = millis() - startTime[i];
+        int step = timeago/steptime;
+        uint8_t reddata[ledCount] = {};
+        uint8_t greendata[ledCount] = {};
+        uint8_t bluedata[ledCount] = {};
+        uint8_t warmwhitedata[ledCount] = {};
+        uint8_t normalwhitedata[ledCount] = {};
+        uint8_t coldwhitedata[ledCount] = {};
+        uint8_t amberdata[ledCount] = {};
+
+        for (size_t i = 0; i < ledCount; i++){
+            reddata[i] = 0;
+            greendata[i] = 0;
+            bluedata[i] = 0;
+            warmwhitedata[i] = 0;
+            normalwhitedata[i] = 0;
+            coldwhitedata[i] = 0;
+            amberdata[i] = 0;
+        }
+
+        for (size_t widthIndex = 0; widthIndex < effectData["data"][step].length(); widthIndex++){
+            reddata[i] = effectData["data"][step][widthIndex];
+            greendata[i] = effectData["data"][step][widthIndex];
+            bluedata[i] = effectData["data"][step][widthIndex];
+        }
+
+        for (size_t i = 0; i < ledCount; i++){
+            reddata[i] = (reddata[i] * effectBrightness) / 100;
+            greendata[i] = (greendata[i] * effectBrightness) / 100;
+            bluedata[i] = (bluedata[i] * effectBrightness) / 100;
+            warmwhitedata[i] = (warmwhitedata[i] * effectBrightness) / 100;
+            normalwhitedata[i] = (normalwhitedata[i] * effectBrightness) / 100;
+            coldwhitedata[i] = (coldwhitedata[i] * effectBrightness) / 100;
+            amberdata[i] = (amberdata[i] * effectBrightness) / 100;
+        }
+        if(updateFunctionRGB) updateFunctionRGB(0, reddata, greendata, bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
     }
 }
 
