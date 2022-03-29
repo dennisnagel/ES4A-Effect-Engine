@@ -474,11 +474,12 @@ void EffectEngine::tick(){
     }
     if(lp){
         int steptime = effectData["data"].length() / (int) effectData["time"];
-        int timeago = millis() - startTime[0];
-        int step = timeago/steptime;
-        Serial.println("Step: " + step);
-        Serial.println("TAG: " + timeago);
-        if(timeago > (int) effectData["time"] + 100 && step >=0 && step <= effectData["data"].length()){
+        //int timeago = millis() - startTime[0];
+        //int step = timeago/steptime;
+        //Serial.println("Step: " + step);
+        //Serial.println("TAG: " + timeago);
+        Serial.println("ST: " + steptime);
+        if(timeago > (int) effectData["time"] + 100){
             uint8_t reddata[ledCount] = {};
             uint8_t greendata[ledCount] = {};
             uint8_t bluedata[ledCount] = {};
