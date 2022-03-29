@@ -476,7 +476,7 @@ void EffectEngine::tick(){
         int steptime = effectData["data"].length() / (int) effectData["time"];
         int timeago = millis() - startTime[0];
         int step = timeago/steptime;
-        if(timeago > (int) effectData["time"] + 100){
+        if(timeago > (int) effectData["time"] + 100 && step >=0 && step <= effectData["data"].length()){
             uint8_t reddata[ledCount] = {};
             uint8_t greendata[ledCount] = {};
             uint8_t bluedata[ledCount] = {};
