@@ -494,10 +494,10 @@ void EffectEngine::tick(){
             amberdata[i] = 0;
         }
 
-        for (size_t widthIndex = 0; widthIndex < effectData["data"][step].length(); widthIndex++){
-            reddata[i] = effectData["data"][step][widthIndex];
-            greendata[i] = effectData["data"][step][widthIndex];
-            bluedata[i] = effectData["data"][step][widthIndex];
+        for (size_t hightIndex = 0; hightIndex < effectData["data"][step].length(); hightIndex++){
+            reddata[hightIndex] = effectData["data"][step][hightIndex][0];
+            greendata[hightIndex] = effectData["data"][step][hightIndex][1];
+            bluedata[hightIndex] = effectData["data"][step][hightIndex][2];
         }
 
         for (size_t i = 0; i < ledCount; i++){
