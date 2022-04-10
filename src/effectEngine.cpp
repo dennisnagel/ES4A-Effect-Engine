@@ -479,7 +479,7 @@ void EffectEngine::tick(){
         //Serial.println("Step: " + step);
         //Serial.println("TAG: " + timeago);
         Serial.println("ST: " + steptime);
-        if(timeago > (int) effectData["time"] + 100){
+        /*if(timeago > (int) effectData["time"] + 100){
             uint8_t reddata[ledCount] = {};
             uint8_t greendata[ledCount] = {};
             uint8_t bluedata[ledCount] = {};
@@ -514,7 +514,7 @@ void EffectEngine::tick(){
                 amberdata[i] = (amberdata[i] * effectBrightness) / 100;
             }
             if(updateFunctionRGB) updateFunctionRGB(0, reddata, greendata, bluedata, warmwhitedata, normalwhitedata, coldwhitedata, amberdata);
-        }
+        }*/
     }
 }
 
